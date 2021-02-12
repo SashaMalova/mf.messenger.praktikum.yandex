@@ -1,0 +1,27 @@
+{
+  "name": "netlify-example",
+  "version": "1.0.0",
+  "description": "Test deploy index.html on Netlify",
+  "main": "server.js",
+  "dependencies": {},
+  "devDependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SashaMalova/Netlify-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SashaMalova/Netlify-example/issues"
+  },
+  "homepage": "https://github.com/SashaMalova/Netlify-example#readme",
+  "engines": {
+    "npm": "14.15.4"
+  }
+}

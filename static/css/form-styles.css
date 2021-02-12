@@ -1,0 +1,119 @@
+
+.login-form {
+    width: 340px;
+    height: 450px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    padding: 30px;
+    align-self: center;
+
+
+}
+
+.signin-form {
+    align-self: center;
+    width: 340px;
+    height: 615px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    padding: 30px;
+
+}
+
+.content-form {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+}
+
+.name-field {
+    color: #657990;
+    font-size: 9px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+.input-field {
+    width: 100%;
+    border-bottom-style: solid; /* Стиль линии внизу */
+    border-bottom-color: #F2E70A;
+    border-bottom-width: 1px;
+
+
+}
+
+
+#wrong-login {
+    color: #CD4061;
+    font-size: 8px;
+    width: 100%;
+    margin-top: 5px;
+    /* visibility: hidden;*/
+}
+
+#wrong-password {
+    color: #CD4061;
+    font-size: 8px;
+    width: 100%;
+    margin-top: 5px;
+    /*visibility: hidden*/
+
+
+}
+
+#password-mismatch {
+    color: #CD4061;
+    font-size: 8px;
+    width: 100%;
+    margin-top: 5px;
+    /*visibility: hidden*/
+}
+
+
+.center {
+    align-self: center;
+}
+
+.add-user-form {
+    position: absolute;
+    width: 340px;
+    height: 257px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    padding: 30px;
+    align-self: center;
+
+}
+
+.cancel {
+    background: none;
+    border: solid 2px #657990;
+    margin-top: 12px;
+    color: #221B33;
+
+}
+
+.blackout {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.upload-new-avatar {
+    position: absolute;
+    width: 340px;
+    height: 257px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    padding: 30px;
+    align-self: center;
+}

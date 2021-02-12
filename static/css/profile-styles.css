@@ -1,0 +1,165 @@
+.back {
+    width: 64px;
+    background: rgba(101, 121, 144, 0.2);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+}
+
+.back > span {
+    width: 28px;
+    height: 28px;
+    background: #F2E70A;
+    border-radius: 14px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.profile-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+
+.end {
+    margin-bottom: 30px;
+}
+
+.avatar-profile {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+a.change-avatar {
+    background: rgba(205, 64, 97, 0.75) !important;
+    font-size: 14px;
+    position: relative;
+    color: #221B33;
+    text-align: center;
+}
+
+a.change-avatar img {
+    position: absolute;
+}
+
+.avatar-profile a {
+    width: 130px;
+    height: 130px;
+    margin: 0;
+    background: #657990;
+    border-radius: 65px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-profile span {
+    width: 130px;
+    height: 130px;
+    background: #657990;
+    border-radius: 65px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+.change-avatar img {
+    opacity: 0.3;
+}
+
+.black-line {
+    display: flex;
+    justify-content: space-between;
+    width: 510px;
+    border-bottom: 1px #657990 solid;
+}
+
+.yellow-line {
+    display: flex;
+    justify-content: space-between;
+    width: 510px;
+    border-bottom: 1px #F2E70A solid;
+}
+
+.field {
+    padding: 10px;
+    font-size: 13px;
+    color: #221B33;
+    text-decoration: none;
+    margin: 0;
+}
+
+.date-profile {
+    font-size: 13px;
+    padding: 10px;
+    color: #657990;
+}
+
+.date-profile input {
+    font-size: 13px;
+    color: #657990;
+    text-align: right;
+    padding: 0px;
+}
+
+.text-red {
+    color: #CD4061;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.add-file {
+    position: relative;
+    text-align: center;
+}
+
+.add-file input {
+    position: absolute;
+    width: 110px;
+    height: 35px;
+    z-index: 1;
+}
+
+.add-file p:hover {
+    text-decoration: underline;
+}
+
+.opacity {
+    opacity: 0;
+}
+
+.red {
+    color: #CD4061;
+    text-align: center;
+    font-size: 13px;
+}
+
+.grey {
+    color: #657990;
+    text-decoration: none;
+}
+
+.without-changes {
+    margin: 0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
