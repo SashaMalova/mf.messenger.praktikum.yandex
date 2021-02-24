@@ -73,3 +73,13 @@ img {
     flex: 0;
 }
 
+ul {
+    margin-block: 0;
+    padding-inline: 0;
+    display: contents;
+}
+
+li {
+   display: contents;
+    list-style-type: none;
+}

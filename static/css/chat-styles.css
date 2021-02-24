@@ -190,13 +190,20 @@
 
 
 .chat > div {
+     width: fit-content;
+     margin-top: 5px;
+     margin-bottom: 5px;
+     max-width: 402px;
+     color: #221B33;
+ }
+
+.chat > p {
     width: fit-content;
     margin-top: 5px;
     margin-bottom: 5px;
     max-width: 402px;
     color: #221B33;
 }
-
 .contacts-message {
     padding: 11px;
     background-color: rgba(101, 121, 144, 0.2);

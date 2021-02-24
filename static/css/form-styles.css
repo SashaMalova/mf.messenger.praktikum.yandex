@@ -34,6 +34,8 @@
     font-size: 9px;
     width: 100%;
     margin-top: 15px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
 }
 
 

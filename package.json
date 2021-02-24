@@ -5,7 +5,9 @@
   "main": "server.js",
   "dependencies": {},
   "devDependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
