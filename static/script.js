@@ -1,11 +1,11 @@
-let user = {};
+const button = document.querySelector('button');
+button.onclick = function () {
+    const user = Array.from(document.querySelectorAll('input'))
+        .reduce((acc, {name, value}) => {
+            acc[name] = value;
+            return acc;
+        }, {});
 
-let button = document.querySelector('button');
-button.onclick = function() {
-    let array = document.querySelectorAll('input');
-    for (let item of array) {
-        user[item.name] = item.value;
-    }
     console.log(user);
 };
 
