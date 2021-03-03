@@ -22,10 +22,11 @@
 
 }
 
-.content-form {
+.content-form,  .input-div > app-input {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    z-index: 3;
 
 }
 
@@ -34,8 +35,8 @@
     font-size: 9px;
     width: 100%;
     margin-top: 15px;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
+    margin-block-start: 0.9em;
+    margin-block-end: 0.9em;
 }
 
 
@@ -54,25 +55,24 @@
     font-size: 8px;
     width: 100%;
     margin-top: 5px;
-    /* visibility: hidden;*/
-}
+    }
 
 #wrong-password {
     color: #CD4061;
     font-size: 8px;
     width: 100%;
     margin-top: 5px;
-    /*visibility: hidden*/
+
 
 
 }
 
-#password-mismatch {
+#email-error, #avatar-error, #password-error,#display_name-error, #login-error, #first_name-error, #last_name-error, #phone-error, #newPassword-error, #newPasswordControl-error {
     color: #CD4061;
     font-size: 8px;
     width: 100%;
     margin-top: 5px;
-    /*visibility: hidden*/
+    height: 8px;
 }
 
 
@@ -92,7 +92,7 @@
 
 }
 
-.cancel {
+.link {
     background: none;
     border: solid 2px #657990;
     margin-top: 12px;
@@ -107,6 +107,7 @@
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.3);
+    z-index:2;
 }
 
 .upload-new-avatar {
@@ -118,4 +119,17 @@
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
     padding: 30px;
     align-self: center;
+}
+
+.button> div{
+    display: flex;
+    justify-content: center;
+}
+
+.invisible {
+    visibility: hidden
+}
+
+.right {
+    text-align: right;
 }
