@@ -1,7 +1,7 @@
 {
   "name": "netlify-example",
   "version": "1.0.0",
-  "description": "Test deploy index.html on Netlify",
+  "description": "test app chats",
   "main": "server.js",
   "dependencies": {
     "handlebars": "^4.7.7"
@@ -13,8 +13,8 @@
     "typescript": "^4.1.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "node ./build.js && tsc --build ./tsconfig.json"
   },
   "repository": {
     "type": "git",

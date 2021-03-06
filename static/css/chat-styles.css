@@ -7,9 +7,7 @@
     flex-direction: column;
     align-items: center;
     color: #F6F7F4;
-
 }
-
 
 .search {
     display: flex;
@@ -22,7 +20,6 @@
     border-radius: 5px;
     color: #657990;
 }
-
 
 .profile {
     color: #F6F7F4;
@@ -59,7 +56,6 @@
 
 .select-chat {
     background: #F6F7F4;
-
 }
 
 .avatar {
@@ -69,7 +65,6 @@
     opacity: .2;
     border-radius: 50%;
 }
-
 
 .contact {
     font-size: 13px;
@@ -135,7 +130,6 @@
     align-items: center;
     width: 96%;
     height: 53px;
-
 }
 
 .main-view .avatar {
@@ -155,7 +149,6 @@
 .main-view > p {
     margin: auto;
 }
-
 
 .three-point {
     display: flex;
@@ -188,14 +181,13 @@
     margin-bottom: 20px;
 }
 
-
 .chat > div {
-     width: fit-content;
-     margin-top: 5px;
-     margin-bottom: 5px;
-     max-width: 402px;
-     color: #221B33;
- }
+    width: fit-content;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    max-width: 402px;
+    color: #221B33;
+}
 
 .chat > p {
     width: fit-content;
@@ -204,6 +196,7 @@
     max-width: 402px;
     color: #221B33;
 }
+
 .contacts-message {
     padding: 11px;
     background-color: rgba(101, 121, 144, 0.2);
@@ -211,7 +204,6 @@
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
 }
-
 
 .your-message {
     padding: 11px;
@@ -249,14 +241,12 @@
     margin-top: 1em;
 }
 
-.message-div,.message-div > app-input{
+.message-div, .message-div > app-input {
     width: 100%;
-    display:flex;
+    display: flex;
     justify-content: center;
     flex-direction: column;
 }
-
-
 
 .newMessage {
     width: 100%;

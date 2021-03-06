@@ -10,17 +10,13 @@ a {
     text-align: center;
 }
 
-
-
 button {
-
     min-width: 122px;
     height: 41px;
     background: #657990;
     border-radius: 10px;
     padding-left: 61px;
     padding-right: 61px;
-
     color: #F6F7F4;
     border: none;
     font: 18px 'Inter', sans-serif;
@@ -83,6 +79,10 @@ ul {
 }
 
 li {
-   display: contents;
+    display: contents;
     list-style-type: none;
+}
+
+.hidden {
+    display: none !important
 }

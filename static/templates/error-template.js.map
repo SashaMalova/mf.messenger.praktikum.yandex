@@ -1,1 +1,0 @@
-{"version":3,"file":"error-template.js","sourceRoot":"","sources":["error-template.ts"],"names":[],"mappings":"AAAA,uEAAuE;AAEvE,MAAM,CAAC,IAAI,SAAS,GAAG,UAAU,SAAiB,EAAE,IAAY;IAC5D,IAAI,QAAQ,GAAG,UAAU,CAAC,OAAO,CAAC;;;;WAI3B,CAAC,CAAC;IAET,OAAO,QAAQ,CAAC;QACZ,SAAS,EAAE,SAAS;QACxB,IAAI,EAAE,IAAI;KACT,CAAC,CAAC;AACP,CAAC,CAAC"}

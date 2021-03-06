@@ -19,7 +19,6 @@
     align-items: center;
     display: flex;
     justify-content: center;
-
 }
 
 .profile-main {
@@ -31,7 +30,6 @@
     height: 100%;
     position: absolute;
 }
-
 
 .end {
     margin-bottom: 30px;
