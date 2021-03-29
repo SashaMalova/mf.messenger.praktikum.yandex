@@ -8,7 +8,7 @@ import {AppStore} from '../../store/store';
 import {chatsApi} from '../../services/chats-api';
 
 export interface ChatProps {
-  contact:any;
+  contact: any;
   input: InputMessage;
   button: Button;
 }
@@ -21,7 +21,7 @@ export class Chat extends Block {
 
 
   constructor(props: ChatProps) {
-    super('chat',props);
+    super('chat', props);
   }
 
   componentDidRender() {
@@ -62,7 +62,7 @@ export class Chat extends Block {
               return !!value ? null : 'заполните поле';
             }],
         };
-        this.inputBlock = new Input (this.input);
+        this.inputBlock = new Input(this.input);
 
         this.button = [{
           classButton: 'data',
@@ -97,7 +97,7 @@ export class Chat extends Block {
               return !!value ? null : 'заполните поле';
             }],
         };
-        this.inputBlock = new Input (this.input);
+        this.inputBlock = new Input(this.input);
 
         this.button = [{
           classButton: 'data',
@@ -125,7 +125,7 @@ export class Chat extends Block {
 
       deleteChat.onclick = () => {
         this.buttonsBlock = [];
-        this.button =  [
+        this.button = [
           {
             classButton: 'data',
             textButton: 'Удалить',
@@ -231,54 +231,54 @@ export class Chat extends Block {
       .replace('<div class="button-img"></div>', '<div class="button"><div>' + this.props.button.getContent().innerHTML + '</div></div>');
   }
 
-  onEnterClickAddUser(formData:any){
+  onEnterClickAddUser(formData: any) {
     chatsApi.findUserRequest(formData)
       .catch(() => {
-        console.log(alert ("пользователь не найден"));
-      }).then((result:any)=>{
-        for (let item of result.response){
-          if (item.login === formData.login){
-            chatsApi.addUsersToChat(item.id)
-              .catch(() => {
-                console.log(AppStore.activeChatId);
-              }).then(()=>{
-                AppStore.router.go('/chat-write');
-              }
-            );
-          }}}
-        );
- }
-
-
-  onEnterClickDeleteUser(formData:any) {
-   chatsApi.findUserRequest(formData)
-      .catch(() => {
-        console.log(alert("пользователь не найден"));
+        console.log(alert('пользователь не найден'));
       }).then((result: any) => {
         for (let item of result.response) {
           if (item.login === formData.login) {
-            chatsApi.deleteUsersFromChat(item.id)
-              .catch(() => {
-                console.log(AppStore.activeChatId);
-              }).then(() => {
-                AppStore.router.go('/chat-write');
-              }
-            );
+            chatsApi.addUsersToChat(item.id)
           }
         }
+      }
+    ).catch(() => {
+      console.log(AppStore.activeChatId);
+    }).then(() => {
+        AppStore.router.go('/chat-write');
       }
     );
   }
 
+
+  onEnterClickDeleteUser(formData: any) {
+    chatsApi.findUserRequest(formData)
+      .catch(() => {
+        console.log(alert('пользователь не найден'));
+      }).then((result: any) => {
+        for (let item of result.response) {
+          if (item.login === formData.login) {
+            chatsApi.deleteUsersFromChat(item.id)
+
+          }
+        }
+      }
+    ).catch(() => {
+      console.log(AppStore.activeChatId);
+    }).then(() => {
+        AppStore.router.go('/chat-write');
+      }
+    );
+  }
 
 
   onEnterClickDeleteChat() {
     chatsApi.deleteChat()
       .catch(() => {
         console.log(AppStore.activeChatId);
-      }).then(()=>{
-      AppStore.activeChatId = undefined;
-      AppStore.router.go('/chat-select');
+      }).then(() => {
+        AppStore.activeChatId = undefined;
+        AppStore.router.go('/chat-select');
       }
     );
   }
