@@ -1,110 +1,158 @@
-import {loginSigningTemplate} from "../../templates/form-template.js";
-import {Button} from "../../components/button/button.js";
-import {Input} from "../../components/input/input.js";
-import {render} from "../../components/render.js";
-import {arrInputsForm} from "../../components/input/arr-inputs-form.js";
+import {loginSigningTemplate} from '../../templates/form-template';
+import {Button} from '../../components/button/button';
+import {Input} from '../../components/input/input';
+import {Block} from '../../components/block/block';
+import {InputProps} from '../../components/input/input.interface';
+import {AppStore} from '../../store/store';
+import {chatsApi} from '../../services/chats-api';
 
-let body = document.querySelector('body');
+export class SigninPage extends Block {
+    private inputs: any;
+    private button: Button;
 
-if (body) {
+    constructor() {
+        super('signin-page');
+    }
 
-    body.innerHTML = loginSigningTemplate(
-        'signin-form',
-        'Регистрация',
-        {
-            link: '../login/login.html',
-            text: 'Войти'
-        },
-    );
-
-    let arr = [{
-        nameField: 'Почта',
-        type: 'text',
-        nameInput: 'email',
-        idError: 'email-error',
-        validation: [
-            (value: string) => {
-                return !!value ? null : "заполните поле";
-            },
-            (value: string) => {
-                return (value.includes('@') && value.includes('.')) ? null : "некорректный email";
-            }
-        ]
-    },
-        {
-            nameField: 'Логин',
-            type: 'text',
-            nameInput: 'login',
-            idError: 'login-error',
-            validation: [
-                (value: string) => {
-                    return !!value ? null : "заполните поле"
-                }
-            ]
-        }, {
-            nameField: 'Имя',
-            type: 'text',
-            nameInput: 'first_name',
-            idError: 'first_name-error',
-            validation: [
-                (value: string) => {
-                    return !!value ? null : "заполните поле"
-                }
-            ]
-        }, {
-            nameField: 'Фамилия',
-            type: 'text',
-            nameInput: 'last_name',
-            idError: 'last_name-error',
-            validation: [
-                (value: string) => {
-                    return !!value ? null : "заполните поле"
-                }
-            ]
-        }, {
-            nameField: 'Телефон',
-            type: 'text',
-            nameInput: 'phone',
-            idError: 'phone-error',
-            validation: [
-                (value: string) => {
-                    return !!value ? null : "заполните поле"
-                },
-                (value: string) => {
-                    return (/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/gm).test(value) ? null : "некорректный номер"
-                }
-            ]
-        }, {
-            nameField: 'Пароль',
-            type: 'password',
-            nameInput: 'newPassword',
-            idError: 'newPassword-error',
-            validation: [
-                (value: string) => {
-                    return !!value ? null : "заполните поле"
-                },
-                (value: string) => {
-                    return (/^.*(?=.{6,})(?=..*[0-9])(?=..*[a-z]|[A-Z]|[а-я]|[А-Я]).*$/gm).test(value) ? null : "Пароль должен содержать 6 символов, хотябы 1 букву и 1 цифру"
-                }
-            ]
-        }, {
-            nameField: 'Пароль (ещё раз)',
-            type: 'password',
-            nameInput: 'newPasswordControl',
-            idError: 'newPasswordControl-error',
-            validation: [
-                (value: string) => {
-                    let password = document.querySelector<HTMLInputElement>('input[name=newPassword]');
-                    return (password && value === password.value) ? null : "Пароли не совпадают"
-                }
-            ]
+    componentDidRender() {
+        for (let item of this.inputs) {
+            item.componentDidRender();
         }
-    ];
+        this.button.componentDidRender();
 
-    let arrInputs = arrInputsForm(arr, Input);
+        const linkSingIn: HTMLElement = document.querySelector('#link-under-button') as HTMLElement;
+        if (linkSingIn ){
+            linkSingIn.onclick = () => {
+                let link = linkSingIn.getAttribute('data-link');
+                if (link) {
+                    AppStore.router.go(link);
+                }
+            }
+        }
+    }
 
-    const button = new Button({classButton: 'data', textButton: 'Зарегистрироваться', inputs: arrInputs});
-    render(".button", button);
+    render(): string {
+        let template = loginSigningTemplate(
+          'signin-form',
+          'Регистрация',
+          {
+              link: '/login',
+              text: 'Войти'
+          },
+        );
+        let arr: InputProps[] = [{
+            nameField: 'Почта',
+            type: 'text',
+            nameInput: 'email',
+            idError: 'email-error',
+            validation: [
+                (value: string) => {
+                    return !!value ? null : "заполните поле";
+                },
+                (value: string) => {
+                    return (value.includes('@') && value.includes('.')) ? null : "некорректный email";
+                }
+            ]
+        },
+            {
+                nameField: 'Логин',
+                type: 'text',
+                nameInput: 'login',
+                idError: 'login-error',
+                validation: [
+                    (value: string) => {
+                        return !!value ? null : "заполните поле"
+                    }
+                ]
+            }, {
+                nameField: 'Имя',
+                type: 'text',
+                nameInput: 'first_name',
+                idError: 'first_name-error',
+                validation: [
+                    (value: string) => {
+                        return !!value ? null : "заполните поле"
+                    }
+                ]
+            }, {
+                nameField: 'Фамилия',
+                type: 'text',
+                nameInput: 'last_name',
+                idError: 'last_name-error',
+                validation: [
+                    (value: string) => {
+                        return !!value ? null : "заполните поле"
+                    }
+                ]
+            }, {
+                nameField: 'Телефон',
+                type: 'text',
+                nameInput: 'phone',
+                idError: 'phone-error',
+                validation: [
+                    (value: string) => {
+                        return !!value ? null : "заполните поле"
+                    },
+                    (value: string) => {
+                        return (/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/gm).test(value) ? null : "некорректный номер"
+                    }
+                ]
+            }, {
+                nameField: 'Пароль',
+                type: 'password',
+                nameInput: 'newPassword',
+                idError: 'newPassword-error',
+                validation: [
+                    (value: string) => {
+                        return !!value ? null : "заполните поле"
+                    },
+                    (value: string) => {
+                        return (/^.*(?=.{6,})(?=..*[0-9])(?=..*[a-z]|[A-Z]|[а-я]|[А-Я]).*$/gm).test(value) ? null : "Пароль должен содержать 6 символов, хотябы 1 букву и 1 цифру"
+                    }
+                ]
+            }, {
+                nameField: 'Пароль (ещё раз)',
+                type: 'password',
+                nameInput: 'newPasswordControl',
+                idError: 'newPasswordControl-error',
+                validation: [
+                    (value: string) => {
+                        let password = document.querySelector<HTMLInputElement>('input[name=newPassword]');
+                        return (password && value === password.value) ? null : "Пароли не совпадают"
+                    }
+                ]
+            }
+        ];
 
+        this.inputs = [];
+        for (let item of arr) {
+            let input = new Input({
+                nameField: item.nameField,
+                type: item.type,
+                nameInput: item.nameInput,
+                idError: item.idError,
+                validation: item.validation,
+            });
+
+            this.inputs.push(input);
+            template = template.replace('<app-input></app-input>', '<app-input>' + input.getContent().innerHTML + '</app-input><app-input></app-input>');
+        }
+        this.button = new Button({
+            classButton: 'data',
+            textButton: 'Зарегистрироваться',
+            inputs: this.inputs,
+            onClick: this.onEnterClick,
+        });
+        template = template.replace('<div class="button"></div>', '<div class="button">' + this.button.getContent().innerHTML + '</div>');
+        return template;
+    }
+
+    onEnterClick(formData :any) {
+        chatsApi.signUp(formData)
+          .then(()=>AppStore.router.go('/chat-select'))
+          .catch(() => {
+              console.log(formData);
+          });
+    }
 }
 

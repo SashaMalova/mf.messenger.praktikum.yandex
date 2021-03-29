@@ -1,6 +1,6 @@
 
-import {Input} from "./input.js";
-import {InputProps} from "./input.interface.js";
+import {Input} from "./input";
+import {InputProps} from "./input.interface";
 
 export class InputMessage extends Input {
     constructor(props: InputProps)

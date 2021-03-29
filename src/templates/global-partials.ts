@@ -9,7 +9,7 @@ export let profile: {[key:string]:string} = {
     avatar: '../../images/avatar.png',
 };
 
-export let contact:{[key:string]:string|{}[]} = {
+export let contact:any = {
     nameContact: 'Вадим',
     chat: [
         {
@@ -42,27 +42,25 @@ export let contact:{[key:string]:string|{}[]} = {
     ]
 };
 
-Handlebars.registerPartial('link', `<a class="center" href="{{link}}">{{text}}</a>`);
-
-Handlebars.registerPartial('linkBack', `<a href="{{link}}" class="back"><span><img src="../../images/arrow-back.png" alt=""></span></a>`);
+Handlebars.registerPartial('link', `<div class="center" id ="link-under-button" data-link="{{link}}">{{text}}</div>`);
 
 Handlebars.registerPartial('black-line', `<div class="black-line">
 <span class="field">{{nameField}}</span>
     <span class="date-profile">{{profileData}}</span>
 </div>`);
 
-Handlebars.registerPartial('yellow-line', `<div class="yellow-line">
-<a href="{{link}}" class="field">{{text}}</a>
+Handlebars.registerPartial('yellow-line', `<div id="{{id}}" class="yellow-line">
+<div class="field">{{text}} </div>
 </div>`);
 
 Handlebars.registerPartial('chat-list', `
-<li>
+<li class="sidebar-chat-item" data-id="{{id}}">
     <span class="line"></span>
-    <div class="chats-list {{select}}">
+    <div class="chats-list {{activeClass}}">
 <span class="avatar"></span>
 <div>
 <div>
-    <span class="contact">{{nameContact}}</span>
+    <span class="contact">{{titleChat}}</span>
     <time class="time">{{time}}</time>
 </div>
 <div>

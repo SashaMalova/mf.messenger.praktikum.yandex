@@ -1,7 +1,13 @@
-import {errorHtml} from "../../templates/error-template.js";
+import {errorHtml} from '../../templates/error-template';
+import {Block} from '../../components/block/block';
 
-let body = document.querySelector('body');
-if (body) {
-    body.innerHTML = errorHtml('500', 'Мы уже фиксим');
+export class Page500 extends Block {
+
+    constructor() {
+        super('page-500');
+    }
+
+    render(): string {
+        return errorHtml('500', 'Не туда попали');
+    }
 }
-

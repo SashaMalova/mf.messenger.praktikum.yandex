@@ -1,10 +1,9 @@
-import {render} from "../render.js";
-import {Block} from "../block.js";
-import {Input} from "./input.js";
-import {InputProps} from "./input.interface.js";
+import {render} from "../render";
+import {Input} from "./input";
+import {InputProps} from "./input.interface";
 
 
-export function arrInputsForm(array: InputProps[], InputNew: typeof Input):Block[] {
+export function arrInputsForm(array: InputProps[], InputNew: typeof Input, notRender?:boolean):Input[] {
     let arrInputs = [];
     for (let item of array) {
         let input: Input;
@@ -17,6 +16,10 @@ export function arrInputsForm(array: InputProps[], InputNew: typeof Input):Block
             profileData: item.profileData,
         });
         arrInputs.push(input);
-        render(".input-div", input);
+        if (!notRender){
+            render(".input-div", input);
+        }
+
     }
-    return arrInputs}
+    return arrInputs
+}

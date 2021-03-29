@@ -4,17 +4,33 @@
   "description": "test app chats",
   "main": "server.js",
   "dependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/register": "^7.13.8",
     "handlebars": "^4.7.7"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/chai": "^4.2.15",
     "@types/handlebars": "^4.1.0",
+    "@types/mocha": "^8.2.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "chai": "^4.3.4",
     "express": "^4.17.1",
+    "less": "^4.1.1",
+    "less-watch-compiler": "^1.14.6",
+    "mocha": "^8.3.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.5"
   },
   "scripts": {
+    "test": "./node_modules/.bin/mocha",
+    "test-watch": "./node_modules/.bin/mocha --watch",
     "start": "node server.js",
-    "build": "node ./build.js && tsc --build ./tsconfig.json"
+    "build": "node ./build.js && tsc --build ./tsconfig.json",
+    "build-watch": "node ./build.js && tsc --build ./tsconfig.json --watch",
+    "less": "lessc ./src/styles/index.less ./build/index.css",
+    "less-watch": "less-watch-compiler ./src/styles/ ./build/ index.less"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-import './global-partials.js';
+import './global-partials';
 
 
 export function loginSigningTemplate(classForm: string, head: string, link?: {[key:string]:string}) {
@@ -6,7 +6,7 @@ export function loginSigningTemplate(classForm: string, head: string, link?: {[k
         <div class="content-form">
             <h2 class="center">{{head}}</h2> 
              
-           <div class="input-div"></div>
+           <div class="input-div"><app-input></app-input></div>
             
         </div>
         <div class="content-form"> 

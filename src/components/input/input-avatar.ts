@@ -1,6 +1,6 @@
 
-import {Input} from "./input.js";
-import {InputProps} from "./input.interface.js";
+import {Input} from "./input";
+import {InputProps} from "./input.interface";
 
 export class InputAvatar extends Input {
     constructor(props: InputProps)
@@ -10,9 +10,12 @@ export class InputAvatar extends Input {
 
     render() {
         let template = Handlebars.compile(`
-<input class="opacity" type="{{type}}" accept="image/*" name="{{nameInput}}">
-          <p>Выбрать файл на<br> компьютере</p>
-        <span class="red invisible" id="{{idError}}"> </span>`);
+            <form id="my-user-form">
+            <label for="avatar"><p>Выбрать файл на<br> компьютере</p></label>
+             <input id="avatar" class="opacity" type="{{type}}" accept="image/*" name="{{nameInput}}">
+            <span class="red invisible" id="{{idError}}"> </span>
+            </form>`
+        );
         return template(this.props);
     }
 }

@@ -1,60 +1,72 @@
-import {Block} from "../block.js";
+import {Block} from '../block/block';
+import {AppStore} from '../../store/store';
 
 export interface ButtonProps {
-    classButton: string;
-    textButton: string;
-    classImg?: string;
-    inputs: Block[];
-    link?: string;
-    alert?: boolean;
+  classButton: string;
+  textButton: string;
+  classImg?: string;
+  inputs?: Block[];
+  link?: string;
+  alert?: boolean;
+  onClick?: (user?: any) => void;
 }
 
 export class Button extends Block {
-    constructor(props: ButtonProps) {
-        super("div", props);
-    }
+  constructor(props: ButtonProps) {
+    super('div', props);
+  }
 
-    componentDidRender() {
-        const buttons = document.querySelectorAll<HTMLButtonElement>('button.data');
-
-        buttons.forEach((element) => {
-            element.onclick = () => {
-                let uncorrect: boolean = false;
-                for (let item of this.props.inputs) {
-                    if (!item.validate()) {
-                        uncorrect = true
-                    }
-                }
-                if (uncorrect && !this.props.alert) {
-                    return alert('ведите корректные данные');
-                } else {
-                    const user = Array.from(document.querySelectorAll('input'))
-                        .reduce((acc: { [key: string]: string }, {name, value}) => {
-                            acc[name] = value;
-                            return acc;
-                        }, {});
-                    console.log(user);
-                }
+  componentDidRender() {
+    if (this.props.classButton === 'data') {
+      const buttons = document.querySelectorAll<HTMLButtonElement>('button.data');
+      buttons.forEach((element) => {
+        element.onclick = () => {
+          let uncorrect: boolean = false;
+          if (this.props.inputs) {
+            for (let item of this.props.inputs) {
+              if (!item.validate()) {
+                uncorrect = true
+              }
             }
-        });
-        const buttonslink = document.querySelectorAll<HTMLButtonElement>('button.link');
-
-        buttonslink.forEach((element) => {
-            element.onclick = () => {
-                document.location.href = this.props.link;
+            if (uncorrect && !this.props.alert) {
+              return alert('ведите корректные данные');
+            } else {
+              const formData = Array.from(document.querySelectorAll('input'))
+                .reduce((acc: { [key: string]: string | File }, {name, value, files}) => {
+                  // for input with files type
+                  acc[name] = files ? files[0] : value;
+                  return acc;
+                }, {});
+              console.log(formData);
+              this.props.onClick(formData);
             }
-        })
+          } else {
+            if (this.props.onClick) {
+              this.props.onClick();
+            }
+          }
+        }
+      });
+    } else {
+      const buttonsLink = document.querySelectorAll<HTMLButtonElement>('button.link');
+      buttonsLink.forEach((element) => {
+        element.onclick = () => {
+          AppStore.router.go(this.props.link);
+      }
+      })
     }
+  }
 
-    render() {
-        let template = Handlebars.compile(`
-{{#if classImg}}
-<button type="submit" class="{{classButton}} {{classImg}}"><img src="{{textButton}}" alt=""></button>
-{{else}}
-<button type="submit" class="{{classButton}}">{{textButton}}</button>
-{{/if}}`);
-        return template(this.props);
-    }
+  render() {
+    let template = Handlebars.compile(`
+      {{#if classImg}}
+      <button type="submit" class="{{classButton}} {{classImg}}"><img src="{{textButton}}" alt=""></button>
+      {{else}}
+      <button type="submit" class="{{classButton}}">{{textButton}}</button>
+      {{/if}}`
+    );
+    return template(this.props);
+  }
 }
 
 

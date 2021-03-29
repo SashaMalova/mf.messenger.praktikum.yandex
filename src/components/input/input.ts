@@ -1,5 +1,5 @@
-import {Block} from "../block.js";
-import {InputProps} from "./input.interface.js";
+import {Block} from "../block/block";
+import {InputProps} from "./input.interface";
 
 export class Input extends Block {
     constructor(props: InputProps) {

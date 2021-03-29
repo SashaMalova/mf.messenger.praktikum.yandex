@@ -9,17 +9,31 @@ Test deploy index.html on Netlify
 Подключен шаблонизатор Handlebars
 Разработан общий механизм валидации полей ввода
 
+# sprint 3
+Добавлен xhr для работы с запросами
+Подключен роутинг
+Добавлены Unit-тесты
+Подключен Less
+Подключен API чатов, авторизации и пользователей 
+
 ##Структура проекта:
-- static/css все стили проекта
+
 - static/images изображения
-- static/pages все HTML страницы проекта
-- static/index.html ссылки на вс страницы
+- static/index.html точка входа
 
 - src/components папка с переиспользуемыми компанентами
 - src/pages исходники ts для каждой страницы проекта
 - src/templates общие шаблоны
+- src/styles все стили проекта
+- src/interfaces интерфейсы
+- src/services контроллер API
+- src/store хранилище общих переменных
+- src/utilities утилиты используемые в проекте
+- src/index.ts основной модуль
 
 ##Запуск проекта
-Компиляция проекта **npm run build**
+Компиляция проекта **npm run build** **npm run less**
 Запуск сервера **npm run start**
 Открыть ссылку http://localhost:4000
+
+Запуск тестов **npm run test**
