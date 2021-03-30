@@ -53,7 +53,7 @@ export class SidebarChat extends Block {
         this.inputBlock = new Input(this.input);
 
           this.button = [{
-            classButton: 'data',
+            classButton: 'button__data',
             textButton: 'Создать чат',
             inputs: [this.inputBlock],
             alert: true,
@@ -64,7 +64,7 @@ export class SidebarChat extends Block {
             {...item, inputs: [this.inputBlock]}));
         }
         const modalWindow = new ModalWindow({
-          classForm: 'add-user-form content-form',
+          classForm: 'form form__add-user modal-window__form',
           head: 'Введите название чата',
           input: this.inputBlock,
           buttons: this.buttonsBlock,

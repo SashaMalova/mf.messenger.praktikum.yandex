@@ -72,7 +72,7 @@ export class ChangePasswordPage extends Block {
     this.arrInputs = arrInputsForm(arr, InputProfile, true);
 
     this.button = new Button({
-      classButton: 'data',
+      classButton: 'button__data',
       textButton: 'Сохранить',
       inputs: this.arrInputs,
       onClick: this.onEnterClick,

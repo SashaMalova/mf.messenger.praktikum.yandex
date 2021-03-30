@@ -29,7 +29,7 @@ export class ProfilePage extends Block {
     this.props.user = {};
     chatsApi.getUserInfo()
       .catch(() => {
-        console.log('error');
+        alert('error');
       })
       .then((result: PlainObject) => {
         this.props.user = cloneDeep(result.response);
@@ -75,7 +75,7 @@ export class ProfilePage extends Block {
         this.inputBlock = new InputAvatar(this.input);
 
         this.button = [{
-          classButton: 'data',
+          classButton: 'button__data',
           textButton: 'Поменять',
           inputs: [this.inputBlock],
           alert: true,
@@ -87,7 +87,7 @@ export class ProfilePage extends Block {
         }
 
         const modalWindow = new ModalWindow({
-          classForm: 'add-user-form content-form',
+          classForm: 'form form__add-user modal-window__form',
           head: 'Загрузите файл',
           input: this.inputBlock,
           buttons: this.buttonsBlock,

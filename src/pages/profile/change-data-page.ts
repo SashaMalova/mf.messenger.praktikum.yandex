@@ -23,7 +23,7 @@ export class ChangeDataPage extends Block {
     this.props.user = {};
     chatsApi.getUserInfo()
       .catch(() => {
-        console.log('error');
+        alert('error');
       })
       .then((result: PlainObject) => {
         this.props.user = cloneDeep(result.response);
@@ -120,7 +120,7 @@ export class ChangeDataPage extends Block {
 
     if (!this.profile) {
       this.button = new Button({
-        classButton: 'data',
+        classButton: 'button__data',
         textButton: 'Сохранить',
         inputs: this.arrInputs,
         onClick: this.onEnterClick,

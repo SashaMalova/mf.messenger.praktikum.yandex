@@ -1,5 +1,5 @@
 function queryStringify(data?: {[key:string]:string}) {
-  let arr = [];
+  const arr = [];
   for (let key in data) {
     arr.push(key + '=' + data[key]);
   }
@@ -7,8 +7,14 @@ function queryStringify(data?: {[key:string]:string}) {
 }
 
 export class HTTPTransport {
+  private baseUrl: string;
+
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
+
   get = (url:string, options: {data?:{[key:string]:any}, headers?:{[key:string]:string}, timeout?:number}) => {
-        return this.request(url + queryStringify(options.data),  {
+        return this.request(this.baseUrl + url + queryStringify(options.data),  {
       ...options,
       method: 'GET'
     }, options.timeout);
@@ -16,15 +22,15 @@ export class HTTPTransport {
 
   put= (url:string, options: {data?:any, headers?:{[key:string]:string}, timeout?:number}) => {
 
-    return this.request(url , {...options, method: 'PUT'}, options.timeout);
+    return this.request(this.baseUrl + url , {...options, method: 'PUT'}, options.timeout);
   };
   post= (url:string, options: {data?:any, headers?:{[key:string]:string}, timeout?:number}) => {
 
-    return this.request(url , {...options, method: 'POST'}, options.timeout);
+    return this.request(this.baseUrl + url , {...options, method: 'POST'}, options.timeout);
   };
   delete= (url:string, options: {data?:any, headers?:{[key:string]:string}, timeout?:number}) => {
 
-    return this.request(url , {...options, method: 'DELETE'}, options.timeout);
+    return this.request(this.baseUrl + url , {...options, method: 'DELETE'}, options.timeout);
   };
 
   request = (url:string, options: {data?:any, headers?:{[key:string]:string}, method:string}, timeout:number = 5000) => {
@@ -45,10 +51,10 @@ export class HTTPTransport {
 
       xhr.timeout = timeout;
       xhr.onload = function () {
-        if (xhr.status >= 400){
-          reject(xhr);
-        } else {
+        if (xhr.status >= 200  &&  xhr.status < 300){
           resolve(xhr);
+        } else {
+          reject(xhr);
         }
       };
 

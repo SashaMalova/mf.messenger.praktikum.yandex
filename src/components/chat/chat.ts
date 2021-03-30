@@ -65,7 +65,7 @@ export class Chat extends Block {
         this.inputBlock = new Input(this.input);
 
         this.button = [{
-          classButton: 'data',
+          classButton: 'button__data',
           textButton: 'Добавить',
           onClick: this.onEnterClickAddUser,
         }];
@@ -74,7 +74,7 @@ export class Chat extends Block {
         }
 
         const modalWindow = new ModalWindow({
-          classForm: 'add-user-form content-form',
+          classForm: 'form form__add-user modal-window__form',
           head: 'Добавить пользователя',
           input: this.inputBlock,
           buttons: this.buttonsBlock,
@@ -100,7 +100,7 @@ export class Chat extends Block {
         this.inputBlock = new Input(this.input);
 
         this.button = [{
-          classButton: 'data',
+          classButton: 'button__data',
           textButton: 'Удалить',
           onClick: this.onEnterClickDeleteUser,
         }];
@@ -109,9 +109,7 @@ export class Chat extends Block {
         }
 
         const modalWindow = new ModalWindow({
-
-
-          classForm: 'add-user-form content-form',
+          classForm: 'form form__delete-user modal-window__form',
           head: 'Удалить пользователя',
           input: this.inputBlock,
           buttons: this.buttonsBlock,
@@ -127,12 +125,12 @@ export class Chat extends Block {
         this.buttonsBlock = [];
         this.button = [
           {
-            classButton: 'data',
+            classButton: 'button__data',
             textButton: 'Удалить',
             onClick: this.onEnterClickDeleteChat,
           },
           {
-            classButton: 'link',
+            classButton: 'button__link',
             textButton: 'Отмена',
             link: '/chat-write',
           }
@@ -142,7 +140,7 @@ export class Chat extends Block {
           this.buttonsBlock.push(new Button(item));
         }
         const modalWindow = new ModalWindow({
-          classForm: 'add-user-form content-form',
+          classForm: 'form form__delete-chat modal-window__form',
           head: 'Удалить Чат',
           buttons: this.buttonsBlock,
         });
@@ -222,13 +220,13 @@ export class Chat extends Block {
     <div class="footer">
         <div class='clip'><img src="../../images/clip.png" alt=""></div>
         <div class="message-div"></div>
-        <div class="button-img"></div> 
+        <div class="button__img"></div> 
       
     </div>  `);
 
 
     return template(this.props).replace('<div class="message-div"></div>', '<div class="message-div"><app-input>' + this.props.input.getContent().innerHTML + '</app-input></div>')
-      .replace('<div class="button-img"></div>', '<div class="button"><div>' + this.props.button.getContent().innerHTML + '</div></div>');
+      .replace('<div class="button__img"></div>', '<div class="button__img"><div class="button__container">' + this.props.button.getContent().innerHTML + '</div></div>');
   }
 
   onEnterClickAddUser(formData: any) {

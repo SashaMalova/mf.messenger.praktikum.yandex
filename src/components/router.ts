@@ -1,13 +1,14 @@
 import {Route} from './route';
 import {Block} from './block/block';
 import {EventBus} from './event-bus';
+import {AppStore} from '../store/store';
 
 export class Router {
 
   static EVENTS = {
     ROUTE_CHANGE: 'router:route-change',
   };
-  eventBus: EventBus;
+  eventBus!: EventBus;
   routes: Route[];
 
   // window.history
@@ -103,7 +104,7 @@ export class Router {
     const route = this.getRoute(pathname);
 
     if (!route) {
-      return;
+     return AppStore.router.go('/404');
     }
 
     if (this._currentRoute) {

@@ -20,7 +20,7 @@ export class SigninPage extends Block {
         }
         this.button.componentDidRender();
 
-        const linkSingIn: HTMLElement = document.querySelector('#link-under-button') as HTMLElement;
+        const linkSingIn: HTMLElement = document.querySelector('.button__link-under-button') as HTMLElement;
         if (linkSingIn ){
             linkSingIn.onclick = () => {
                 let link = linkSingIn.getAttribute('data-link');
@@ -33,7 +33,7 @@ export class SigninPage extends Block {
 
     render(): string {
         let template = loginSigningTemplate(
-          'signin-form',
+          'form form__signin',
           'Регистрация',
           {
               link: '/login',
@@ -135,10 +135,10 @@ export class SigninPage extends Block {
             });
 
             this.inputs.push(input);
-            template = template.replace('<app-input></app-input>', '<app-input>' + input.getContent().innerHTML + '</app-input><app-input></app-input>');
+            template = template.replace('<app-input class="container"></app-input>', '<app-input class="container">' + input.getContent().innerHTML + '</app-input><app-input class="container"></app-input>');
         }
         this.button = new Button({
-            classButton: 'data',
+            classButton: 'button__data',
             textButton: 'Зарегистрироваться',
             inputs: this.inputs,
             onClick: this.onEnterClick,

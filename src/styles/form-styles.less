@@ -1,91 +1,8 @@
-.login-form {
-    width: 340px;
-    height: 450px;
-    background: #FFFFFF;
-    border-radius: 12px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
-    padding: 30px;
-    align-self: center;
-}
-
-.signin-form {
-    align-self: center;
-    width: 340px;
-    height: 615px;
-    background: #FFFFFF;
-    border-radius: 12px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
-    padding: 30px;
-}
-
-.content-form, .input-div > app-input {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    z-index: 3;
-}
-
-.name-field {
-    color: #657990;
-    font-size: 9px;
-    width: 100%;
-    margin-top: 15px;
-    margin-block-start: 0.9em;
-    margin-block-end: 0.9em;
-}
-
-.input-field {
-    width: 100%;
-    border-bottom-style: solid; /* Стиль линии внизу */
-    border-bottom-color: #F2E70A;
-    border-bottom-width: 1px;
-}
-
-#wrong-login {
-    color: #CD4061;
-    font-size: 8px;
-    width: 100%;
-    margin-top: 5px;
-}
-
-#wrong-password {
-    color: #CD4061;
-    font-size: 8px;
-    width: 100%;
-    margin-top: 5px;
-}
-
-#email-error, #avatar-error, #password-error, #display_name-error, #login-error, #first_name-error, #last_name-error, #phone-error, #newPassword-error, #newPasswordControl-error {
-    color: #CD4061;
-    font-size: 8px;
-    width: 100%;
-    margin-top: 5px;
-    height: 8px;
-}
-
-.center {
-    align-self: center;
-}
-
-.add-user-form {
+.modal-window__form {
     position: absolute;
-    width: 340px;
-    height: 257px;
-    background: #FFFFFF;
-    border-radius: 12px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
-    padding: 30px;
-    align-self: center;
 }
 
-.link {
-    background: none;
-    border: solid 2px #657990;
-    margin-top: 12px;
-    color: #221B33;
-}
-
-.blackout {
+.modal-window__blackout {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -95,18 +12,78 @@
     z-index: 2;
 }
 
-.upload-new-avatar {
-    position: absolute;
+.form {
+    align-self: center;
     width: 340px;
-    height: 257px;
     background: #FFFFFF;
     border-radius: 12px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
     padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    z-index: 3;
+}
+
+.form__upload-new-avatar {
+     height: 257px;
+}
+
+.form__login {
+    height: 450px;
+}
+
+.form__signin {
+    height: 615px;
+}
+
+.form__add-user, .form__delete-user, .form__delete-chat {
+    height: 257px;
+}
+
+.form__header {
     align-self: center;
 }
 
-.button > div {
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    z-index: 3;
+}
+
+.input__error {
+    color: #CD4061;
+    font-size: 8px;
+    width: 100%;
+    margin-top: 5px;
+    height: 8px;
+}
+
+.input__name {
+    color: #657990;
+    font-size: 9px;
+    width: 100%;
+    margin-top: 15px;
+    margin-block-start: 0.9em;
+    margin-block-end: 0.9em;
+}
+
+.input__field {
+    width: 100%;
+    border-bottom-style: solid; /* Стиль линии внизу */
+    border-bottom-color: #F2E70A;
+    border-bottom-width: 1px;
+}
+
+.button__link {
+    background: none;
+    border: solid 2px #657990;
+    margin-top: 12px;
+    color: #221B33;
+}
+
+.button__container {
     display: flex;
     justify-content: center;
 }
@@ -141,14 +118,14 @@ login-page,  signin-page{
     overflow-y: hidden;
 }
 
-#link-under-button {
+.button__link-under-button {
     margin: 1em;
     color: #221B33;
     font: inherit;
     text-align: center;
 }
 
-#link-under-button:hover {
+.button__link-under-button:hover {
  text-decoration: underline;
 }
 

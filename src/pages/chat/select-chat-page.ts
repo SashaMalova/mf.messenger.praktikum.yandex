@@ -37,7 +37,7 @@ export class SelectChatPage extends Block {
   private fetchChatsList() {
     chatsApi.getChats()
       .catch(() => {
-        console.log('error');
+        alert('error');
       })
       .then((result: PlainObject) => {
         this.props.chats = cloneDeep(result.response);

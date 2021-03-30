@@ -23,7 +23,7 @@ export class ModalWindow extends Block {
     if (this.props.input) {
       this.props.input.componentDidRender();
     }
-    const blackout = document.querySelector<HTMLElement>('.blackout');
+    const blackout = document.querySelector<HTMLElement>('.modal-window__blackout');
     const appModalWindow = document.querySelector<HTMLElement>('app-modal-window')
     if (blackout) {
       blackout.onclick = () => {
@@ -51,14 +51,14 @@ export class ModalWindow extends Block {
       this.props.head,
     );
 
-    let result = '<div class="blackout"></div>' + template;
+    let result = '<div class="modal-window__blackout"></div>' + template;
     if (this.props.input) {
-      result = result.replace('<div class="input-div"><app-input></app-input></div>', '<div class="input-div"><app-input>' + this.props.input.getContent().innerHTML + '</app-input></div>');
+      result = result.replace('<div class="input-div"><app-input class="container"></app-input></div>', '<div class="input-div"><app-input class="container">' + this.props.input.getContent().innerHTML + '</app-input></div>');
     }
 
     if (this.props.buttons) {
       for (let item of this.props.buttons) {
-        result =  result.replace('<div class="button"></div>','<div class="button"><div>' + item.getContent().innerHTML + '</div></div><div class="button"></div>');
+        result =  result.replace('<div class="button"></div>','<div class="button"><div class="button__container">' + item.getContent().innerHTML + '</div></div><div class="button"></div>');
       }
     }
     return result;

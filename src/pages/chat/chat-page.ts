@@ -36,7 +36,7 @@ export class ChatPage extends Block {
 
     chatsApi.getChats()
       .catch(() => {
-        console.log('error');
+        alert('error');
       })
       .then((result: PlainObject) => {
         this.props.chats = cloneDeep(result.response);
@@ -71,7 +71,7 @@ export class ChatPage extends Block {
     });
 
     const buttonSend = new Button({
-      classButton: 'data',
+      classButton: 'button__data',
       textButton: `../../images/arrow.png`,
       classImg: 'button-send',
       inputs: [messageInput],

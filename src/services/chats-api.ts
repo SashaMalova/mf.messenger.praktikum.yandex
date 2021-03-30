@@ -1,16 +1,29 @@
-
 import {AppStore} from '../store/store';
 import {HTTPTransport} from '../components/http-transport';
 
 export class ChatsApi {
   private appFetch: HTTPTransport;
-
+  private apiHost:{[key:string]:string};
   constructor(httpTransport?: HTTPTransport) {
-    this.appFetch = httpTransport ? httpTransport : new HTTPTransport();
+    this.appFetch = httpTransport ? httpTransport : new HTTPTransport('https://ya-praktikum.tech/api/v2/');
+    this.apiHost = {
+      signUp: 'auth/signup',
+      signIn: 'auth/signin',
+      getUserInfo: 'auth/user',
+      logout: 'auth/logout',
+      getChats: 'chats',
+      createChat: 'chats',
+      deleteChat: 'chats',
+      addUsersToChat: 'chats/users',
+      deleteUsersFromChat: 'chats/users',
+      changeUserProfile: 'user/profile',
+      changeUserAvatar: 'user/profile/avatar',
+      changePasswordRequest: 'user/password',
+      findUserRequest: 'user/search',
+    }
   }
-
-  signUp(formData: any): Promise<any> {
-    return this.appFetch.post('https://ya-praktikum.tech/api/v2/auth/signup', {
+  signUp(formData: Data): Promise<any> {
+    return this.appFetch.post(this.apiHost.signUp, {
         headers: {
           'Content-Type': 'application/json',
           'accept': 'application/json'
@@ -27,8 +40,8 @@ export class ChatsApi {
     )
   }
 
-  signIn(formData: any): Promise<any> {
-    return this.appFetch.post('https://ya-praktikum.tech/api/v2/auth/signin', {
+  signIn(formData: Data): Promise<any> {
+    return this.appFetch.post(this.apiHost.signIn, {
       headers: {'Content-Type': 'application/json'},
       data: {
         login: formData.login,
@@ -38,7 +51,7 @@ export class ChatsApi {
   }
 
   getUserInfo() {
-    return this.appFetch.get('https://ya-praktikum.tech/api/v2/auth/user', {
+    return this.appFetch.get( this.apiHost.getUserInfo, {
       headers: {
         'accept': 'application/json'
       },
@@ -46,7 +59,7 @@ export class ChatsApi {
   }
 
   logout(): Promise<any> {
-    return this.appFetch.post('https://ya-praktikum.tech/api/v2/auth/logout', {
+    return this.appFetch.post(this.apiHost.logout, {
       headers: {
         'accept': 'application/json'
       }
@@ -54,15 +67,15 @@ export class ChatsApi {
   }
 
   getChats(): Promise<any> {
-    return this.appFetch.get('https://ya-praktikum.tech/api/v2/chats', {
+    return this.appFetch.get(this.apiHost.getChats, {
       headers: {
         'accept': 'application/json'
       },
     })
   }
 
-  createChat(formData: any): Promise<any> {
-    return this.appFetch.post('https://ya-praktikum.tech/api/v2/chats', {
+  createChat(formData: Data): Promise<any> {
+    return this.appFetch.post(this.apiHost.createChat, {
       headers: {
         "Content-Type": "application/json",
         "accept": "application/json",
@@ -73,7 +86,7 @@ export class ChatsApi {
   }
 
   deleteChat(): Promise<any> {
-    return this.appFetch.delete('https://ya-praktikum.tech/api/v2/chats', {
+    return this.appFetch.delete(this.apiHost.deleteChat, {
       headers: {
         "Content-Type": "application/json",
         "accept": "application/json",
@@ -84,7 +97,7 @@ export class ChatsApi {
   }
 
   addUsersToChat(id:number):Promise<any> {
-    return this.appFetch.put('https://ya-praktikum.tech/api/v2/chats/users', {
+    return this.appFetch.put(this.apiHost.addUsersToChat, {
       headers: {
         "Content-Type": "application/json",
         "accept": "application/json",
@@ -97,7 +110,7 @@ export class ChatsApi {
   }
 
   deleteUsersFromChat(id:number):Promise<any> {
-    return this.appFetch.delete('https://ya-praktikum.tech/api/v2/chats/users', {
+    return this.appFetch.delete(this.apiHost.deleteUsersFromChat, {
       headers: {
         "Content-Type": "application/json",
         "accept": "application/json",
@@ -109,8 +122,8 @@ export class ChatsApi {
     },)
   }
 
-  changeUserProfile(formData: any): Promise<any> {
-   return this.appFetch.put('https://ya-praktikum.tech/api/v2/user/profile', {
+  changeUserProfile(formData: Data): Promise<any> {
+   return this.appFetch.put(this.apiHost.changeUserProfile, {
       headers: {
         "Content-Type": "application/json",
         "accept": "application/json",
@@ -126,7 +139,7 @@ export class ChatsApi {
   }
 
   changeUserAvatar(form:FormData):Promise<any> {
-    return this.appFetch.put('https://ya-praktikum.tech/api/v2/user/profile/avatar', {
+    return this.appFetch.put(this.apiHost.changeUserAvatar, {
       headers: {
         "accept": "application/json",
       },
@@ -134,8 +147,8 @@ export class ChatsApi {
     },)
   }
 
-  changePasswordRequest(formData: any): Promise<any> {
-   return this.appFetch.put('https://ya-praktikum.tech/api/v2/user/password', {
+  changePasswordRequest(formData: Data): Promise<any> {
+   return this.appFetch.put(this.apiHost.changePasswordRequest, {
       headers: {
         "Content-Type": "application/json",
         "accept": "application/json",
@@ -146,8 +159,8 @@ export class ChatsApi {
       }},)
   }
 
-  findUserRequest(formData:any):Promise<any> {
-    return this.appFetch.post('https://ya-praktikum.tech/api/v2/user/search', {
+  findUserRequest(formData: Data):Promise<any> {
+    return this.appFetch.post(this.apiHost.findUserRequest, {
       headers: {
         "Content-Type": "application/json",
         "accept": "application/json",
@@ -157,7 +170,6 @@ export class ChatsApi {
       }
     },)
   }
-
 }
 
 export const chatsApi = new ChatsApi();

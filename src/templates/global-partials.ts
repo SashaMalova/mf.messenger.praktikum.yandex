@@ -42,7 +42,7 @@ export let contact:any = {
     ]
 };
 
-Handlebars.registerPartial('link', `<div class="center" id ="link-under-button" data-link="{{link}}">{{text}}</div>`);
+Handlebars.registerPartial('link', `<div class="button__link-under-button" data-link="{{link}}">{{text}}</div>`);
 
 Handlebars.registerPartial('black-line', `<div class="black-line">
 <span class="field">{{nameField}}</span>

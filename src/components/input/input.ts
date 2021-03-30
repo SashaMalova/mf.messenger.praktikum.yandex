@@ -58,10 +58,10 @@ export class Input extends Block {
     }
 
     render() {
-        let template = Handlebars.compile(`<span class="name-field">{{nameField}}</span>
-     <div class="input-field"><input type="{{type}}" name="{{nameInput}}" ></div>
+        let template = Handlebars.compile(`<span class="input__name">{{nameField}}</span>
+     <div class="input__field"><input type="{{type}}" name="{{nameInput}}" ></div>
     {{#if idError}}
-    <span class="invisible" id="{{idError}}" ></span>
+    <span class="invisible input__error" id="{{idError}}" ></span>
 {{/if}}`);
         return template(this.props);
     }

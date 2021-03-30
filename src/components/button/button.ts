@@ -17,8 +17,8 @@ export class Button extends Block {
   }
 
   componentDidRender() {
-    if (this.props.classButton === 'data') {
-      const buttons = document.querySelectorAll<HTMLButtonElement>('button.data');
+    if (this.props.classButton === 'button__data') {
+      const buttons = document.querySelectorAll<HTMLButtonElement>('button.button__data');
       buttons.forEach((element) => {
         element.onclick = () => {
           let uncorrect: boolean = false;
@@ -48,7 +48,7 @@ export class Button extends Block {
         }
       });
     } else {
-      const buttonsLink = document.querySelectorAll<HTMLButtonElement>('button.link');
+      const buttonsLink = document.querySelectorAll<HTMLButtonElement>('button.button__link');
       buttonsLink.forEach((element) => {
         element.onclick = () => {
           AppStore.router.go(this.props.link);
