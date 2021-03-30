@@ -30,7 +30,8 @@
     "build": "node ./build.js && tsc --build ./tsconfig.json",
     "build-watch": "node ./build.js && tsc --build ./tsconfig.json --watch",
     "less": "lessc ./src/styles/index.less ./build/index.css",
-    "less-watch": "less-watch-compiler ./src/styles/ ./build/ index.less"
+    "less-watch": "less-watch-compiler ./src/styles/ ./build/ index.less",
+    "build-prod": "npm run build && npm run less"
   },
   "repository": {
     "type": "git",
