@@ -6,4 +6,5 @@
 # “publish” is the directory to publish (relative to the root of your repo).
 
 [build]
-    command = "npm run build-prod && npm run start"
+    command = "npm run build-prod"
+    publish = "build"
