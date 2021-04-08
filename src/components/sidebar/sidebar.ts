@@ -32,9 +32,7 @@ export class SidebarChat extends Block {
   }
 
   componentDidRender() {
-
-    let newChat: HTMLElement;
-    newChat = <HTMLElement>document.querySelector('#new-chat');
+    const newChat: HTMLElement = <HTMLElement>document.querySelector('#new-chat');
     if (newChat) {
       newChat.onclick = () => {
         this.buttonsBlock = [];
@@ -45,7 +43,7 @@ export class SidebarChat extends Block {
           idError: 'new-chat-error',
           validation: [
             (value: string):null|string => {
-              return !!value ? null : "заполните поле";
+              return value ? null : "заполните поле";
             },
           ]
         };
@@ -59,7 +57,7 @@ export class SidebarChat extends Block {
             alert: true,
             onClick: this.onEnterClick,
         }];
-        for (let item of this.button) {
+        for (const item of this.button) {
           this.buttonsBlock.push(new Button(
             {...item, inputs: [this.inputBlock]}));
         }
@@ -93,7 +91,7 @@ export class SidebarChat extends Block {
       content = this.props.content.getContent().innerHTML;
     }
 
-    let template = Handlebars.compile(`<aside class="sidebar">
+    const template = Handlebars.compile(`<aside class="sidebar">
    <div class = 'new-chat-and-profile'>
         <img id='new-chat' src="../../images/new-chat.png">
         <div id="profile-view" class="profile">Профиль ></div>
@@ -110,7 +108,7 @@ export class SidebarChat extends Block {
     </div>`);
 
     return template(this.props);
-  };
+  }
 
   onEnterClick (formData :any){
     chatsApi.createChat(formData)

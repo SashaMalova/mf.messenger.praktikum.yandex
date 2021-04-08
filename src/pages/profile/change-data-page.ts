@@ -32,7 +32,7 @@ export class ChangeDataPage extends Block {
 
   componentDidRender() {
     this.profile.componentDidRender();
-    for (let item of this.arrInputs) {
+    for (const item of this.arrInputs) {
       item.componentDidRender();
     }
     this.button.componentDidRender();
@@ -40,7 +40,7 @@ export class ChangeDataPage extends Block {
 
   render(): string {
 
-    let arr = [
+    const arr = [
       {
         nameField: 'Почта',
         type: 'text',
@@ -49,7 +49,7 @@ export class ChangeDataPage extends Block {
         idError: 'email-error',
         validation: [
           (value: string) => {
-            return !!value ? null : 'заполните поле';
+            return value ? null : 'заполните поле';
           },
           (value: string) => {
             return (value.includes('@') && value.includes('.')) ? null : 'некорректный email';
@@ -63,7 +63,7 @@ export class ChangeDataPage extends Block {
         idError: 'login-error',
         validation: [
           (value: string) => {
-            return !!value ? null : 'заполните поле'
+            return value ? null : 'заполните поле'
           }
         ]
       }, {
@@ -74,7 +74,7 @@ export class ChangeDataPage extends Block {
         idError: 'first_name-error',
         validation: [
           (value: string) => {
-            return !!value ? null : 'заполните поле'
+            return value ? null : 'заполните поле'
           }
         ],
       }, {
@@ -85,7 +85,7 @@ export class ChangeDataPage extends Block {
         idError: 'last_name-error',
         validation: [
           (value: string) => {
-            return !!value ? null : 'заполните поле'
+            return value ? null : 'заполните поле'
           }
         ],
       }, {
@@ -96,7 +96,7 @@ export class ChangeDataPage extends Block {
         idError: 'display_name-error',
         validation: [
           (value: string) => {
-            return !!value ? null : 'заполните поле'
+            return value ? null : 'заполните поле'
           }
         ]
       }, {
@@ -107,7 +107,7 @@ export class ChangeDataPage extends Block {
         idError: 'phone-error',
         validation: [
           (value: string) => {
-            return !!value ? null : 'заполните поле'
+            return value ? null : 'заполните поле'
           },
           (value: string) => {
             return (/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/gm).test(value) ? null : 'некорректный номер'

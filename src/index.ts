@@ -10,10 +10,12 @@ import {SelectChatPage} from './pages/chat/select-chat-page';
 import {LoginPage} from './pages/login/login';
 import {AppStore} from './store/store';
 import {ReDirect} from './components/re-direct';
+import './styles/index.less'
+
 
 AppStore.router = new Router('body');
 
-let props={};
+const props={};
 
 AppStore.router.use('/500', Page500)
   .use('/404',Page404)

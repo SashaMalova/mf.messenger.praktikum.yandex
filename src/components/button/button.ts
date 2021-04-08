@@ -21,9 +21,9 @@ export class Button extends Block {
       const buttons = document.querySelectorAll<HTMLButtonElement>('button.button__data');
       buttons.forEach((element) => {
         element.onclick = () => {
-          let uncorrect: boolean = false;
+          let uncorrect = false;
           if (this.props.inputs) {
-            for (let item of this.props.inputs) {
+            for (const item of this.props.inputs) {
               if (!item.validate()) {
                 uncorrect = true
               }
@@ -58,7 +58,7 @@ export class Button extends Block {
   }
 
   render() {
-    let template = Handlebars.compile(`
+    const template = Handlebars.compile(`
       {{#if classImg}}
       <button type="submit" class="{{classButton}} {{classImg}}"><img src="{{textButton}}" alt=""></button>
       {{else}}

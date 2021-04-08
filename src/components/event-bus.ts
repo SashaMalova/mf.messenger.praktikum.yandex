@@ -1,10 +1,10 @@
 export class EventBus {
-    listeners:{[key:string]:Function[]};
+    listeners:{[key:string]:any[]};
     constructor() {
         this.listeners = {};
     }
 
-    on(event:string, callback:Function) {
+    on(event:string, callback:any) {
         if (!this.listeners[event]) {
             this.listeners[event] = [];
         }
@@ -12,13 +12,13 @@ export class EventBus {
         this.listeners[event].push(callback);
     }
 
-    off(event:string, callback:Function) {
+    off(event:string, callback:any) {
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
         }
 
         this.listeners[event] = this.listeners[event].filter(
-            (listener:Function) => listener !== callback
+            (listener:any) => listener !== callback
         );
     }
 
@@ -28,7 +28,7 @@ export class EventBus {
             return;
         }
 
-        this.listeners[event].forEach(function(listener:Function) {
+        this.listeners[event].forEach(function(listener:any) {
             listener(...args);
         });
     }

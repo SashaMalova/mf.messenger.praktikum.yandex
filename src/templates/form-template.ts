@@ -2,7 +2,7 @@ import './global-partials';
 
 
 export function loginSigningTemplate(classForm: string, head: string, link?: {[key:string]:string}) {
-    let template = Handlebars.compile(`<div class="{{classForm}}">
+    const template = Handlebars.compile(`<div class="{{classForm}}">
         <div class="container">
             <h2 class="form__header">{{head}}</h2> 
              

@@ -59,8 +59,6 @@ export class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  componentDidMount() {
-  }
 
   _componentDidUpdate(oldProps: any, newProps: any) {
     const response = this.componentDidUpdate(oldProps, newProps);
@@ -93,6 +91,11 @@ export class Block {
   }
 
   componentDidRender() {
+    return;
+  }
+
+  componentDidMount() {
+    return;
   }
 
   getContent(): HTMLElement {
@@ -102,7 +105,7 @@ export class Block {
   _makePropsProxy(props: any) {
     return new Proxy(props, {
       set: (target, prop, value) => {
-        let oldProps = {...props};
+        const oldProps = {...props};
         target[prop] = value;
         this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
         return true;
@@ -118,9 +121,11 @@ export class Block {
   }
 
   validate() {
+    return;
   }
 
   clearError() {
+    return;
   }
 
   show() {

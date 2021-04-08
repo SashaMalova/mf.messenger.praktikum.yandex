@@ -2,7 +2,7 @@
   "name": "netlify-example",
   "version": "1.0.0",
   "description": "test app chats",
-  "main": "server.js",
+  "private": true,
   "dependencies": {
     "@babel/core": "^7.13.10",
     "@babel/register": "^7.13.8",
@@ -14,16 +14,38 @@
     "@types/chai": "^4.2.15",
     "@types/handlebars": "^4.1.0",
     "@types/mocha": "^8.2.2",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "chai": "^4.3.4",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^8.1.1",
+    "css-loader": "^5.2.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb": "^18.2.1",
     "express": "^4.17.1",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.1",
+    "husky": "^6.0.0",
     "less": "^4.1.1",
+    "less-loader": "^8.0.0",
     "less-watch-compiler": "^1.14.6",
     "mocha": "^8.3.2",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.1.0",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "webpack": "^5.30.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
+    "webpack-dev-watch": "webpack --mode development --watch",
+    "webpack-dev": "webpack --mode development",
+    "webpack-build": "webpack --mode production",
+    "start-webpack": "webpack serve --mode development --open",
+    "webpack": "webpack",
     "test": "./node_modules/.bin/mocha",
     "test-watch": "./node_modules/.bin/mocha --watch",
     "start": "node server.js",
@@ -44,5 +66,10 @@
   "homepage": "https://github.com/SashaMalova/Netlify-example#readme",
   "engines": {
     "npm": "14.15.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint:all",
+    }
   }
 }

@@ -9,7 +9,7 @@ export class InputProfile extends Input {
     }
 
     render() {
-        let template = Handlebars.compile(`<div class="yellow-line">
+        const template = Handlebars.compile(`<div class="yellow-line">
             <span class="field">{{nameField}}</span>
             <span class="date-profile"><input type="{{type}}" name="{{nameInput}}" value="{{profileData}}"></span>
                     </div>

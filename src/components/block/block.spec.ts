@@ -15,7 +15,7 @@ describe('Router tests', () => {
 
   it('check that the block _registerEvents triggers the eventbus.on event 4 times', () => {
     let onEventBusCounter = 0;
-    let eventbus = new EventBus();
+    const eventbus = new EventBus();
     eventbus.on = () => (onEventBusCounter++);
 
      expect(block._registerEvents(eventbus)).eq(undefined);

@@ -22,14 +22,14 @@ export class ChangePasswordPage extends Block {
 
   componentDidRender() {
     this.profile.componentDidRender();
-    for (let item of this.arrInputs) {
+    for (const item of this.arrInputs) {
         item.componentDidRender();
     }
     this.button.componentDidRender();
   }
 
   render(): string {
-    let arr = [{
+    const arr = [{
       nameField: 'Старый пароль',
       type: 'password',
       nameInput: 'oldPassword',
@@ -37,7 +37,7 @@ export class ChangePasswordPage extends Block {
       idError: 'password-error',
       validation: [
         (value: string) => {
-          return !!value ? null : "заполните поле";
+          return value ? null : "заполните поле";
         },
       ]
     }, {
@@ -48,7 +48,7 @@ export class ChangePasswordPage extends Block {
       idError: 'newPassword-error',
       validation: [
         (value: string) => {
-          return !!value ? null : "заполните поле"
+          return value ? null : "заполните поле"
         },
         (value: string) => {
           return (/^.*(?=.{6,})(?=..*[0-9])(?=..*[a-z]|[A-Z]|[а-я]|[А-Я]).*$/gm).test(value) ? null : "Пароль должен содержать 6 символов, хотябы 1 букву и 1 цифру"
@@ -62,7 +62,7 @@ export class ChangePasswordPage extends Block {
       idError: 'newPasswordControl-error',
       validation: [
         (value: string) => {
-          let password = document.querySelector<HTMLInputElement>('input[name=newPassword]');
+          const password = document.querySelector<HTMLInputElement>('input[name=newPassword]');
           return (password && value === password.value) ? null : "Пароли не совпадают"
         }
       ]

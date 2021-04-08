@@ -9,6 +9,7 @@ import {AppStore} from '../../store/store';
 import {cloneDeep} from '../../utilities/clon-deep';
 import {chatsApi} from '../../services/chats-api';
 
+
 export interface ChatPageProps {
   chats: {
     title: string,
@@ -45,10 +46,8 @@ export class ChatPage extends Block {
 
   componentDidRender() {
     this.sidebarChat.componentDidRender();
-
-    let sidebarChatItems: HTMLElement[];
-    sidebarChatItems = Array.from(document.querySelectorAll('.sidebar-chat-item'));
-    for (let item of sidebarChatItems) {
+    const sidebarChatItems: HTMLElement[] = Array.from(document.querySelectorAll('.sidebar-chat-item'));
+    for (const item of sidebarChatItems) {
       item.onclick = ()=>{
         AppStore.activeChatId = Number(item.attributes.getNamedItem('data-id')?.value)
         this.props.activeIdChat = AppStore.activeChatId;
@@ -65,7 +64,7 @@ export class ChatPage extends Block {
       idError: 'message-error',
       validation: [
         (value: string) => {
-          return !!value ? null : 'заполните поле';
+          return value ? null : 'заполните поле';
         },
       ],
     });
@@ -83,7 +82,7 @@ export class ChatPage extends Block {
     this.arr = [];
     if (this.props.chats){
       console.log(AppStore.activeChatId);
-      for (let item of  Object.keys(this.props.chats) ){
+      for (const item of  Object.keys(this.props.chats) ){
         this.arr.push({
           title: this.props.chats[item].title,
           id: this.props.chats[item].id,

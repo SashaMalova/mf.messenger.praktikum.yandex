@@ -1,6 +1,6 @@
 function queryStringify(data?: {[key:string]:string}) {
   const arr = [];
-  for (let key in data) {
+  for (const key in data) {
     arr.push(key + '=' + data[key]);
   }
   return arr.length? '?' + (arr.join('&')) : '';
@@ -33,10 +33,10 @@ export class HTTPTransport {
     return this.request(this.baseUrl + url , {...options, method: 'DELETE'}, options.timeout);
   };
 
-  request = (url:string, options: {data?:any, headers?:{[key:string]:string}, method:string}, timeout:number = 5000) => {
-    let headers =  options.headers;
-    let data = options.data;
-    let method = options.method;
+  request = (url:string, options: {data?:any, headers?:{[key:string]:string}, method:string}, timeout = 5000) => {
+    const headers =  options.headers;
+    const data = options.data;
+    const method = options.method;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -44,7 +44,7 @@ export class HTTPTransport {
       xhr.withCredentials  = true;
       xhr.responseType = 'json';
       if (headers){
-        for (let key of Object.keys(headers)){
+        for (const key of Object.keys(headers)){
           xhr.setRequestHeader(key, headers[key]);
         }
       }

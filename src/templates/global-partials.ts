@@ -1,4 +1,4 @@
-export let profile: {[key:string]:string} = {
+export const profile: {[key:string]:string} = {
     email: 'pochta@yandex.ru',
     login: 'ivanivanov',
     first_name: 'Иван',
@@ -9,7 +9,7 @@ export let profile: {[key:string]:string} = {
     avatar: '../../images/avatar.png',
 };
 
-export let contact:any = {
+export const contact:any = {
     nameContact: 'Вадим',
     chat: [
         {

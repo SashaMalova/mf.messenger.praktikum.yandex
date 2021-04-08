@@ -9,7 +9,7 @@ export class InputAvatar extends Input {
     }
 
     render() {
-        let template = Handlebars.compile(`
+        const template = Handlebars.compile(`
             <form id="my-user-form">
             <label for="avatar"><p>Выбрать файл на<br> компьютере</p></label>
              <input id="avatar" class="opacity" type="{{type}}" accept="image/*" name="{{nameInput}}">

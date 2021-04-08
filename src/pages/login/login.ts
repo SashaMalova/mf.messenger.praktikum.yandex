@@ -16,7 +16,7 @@ export class LoginPage extends Block {
   }
 
   componentDidRender() {
-    for (let item of this.inputs) {
+    for (const item of this.inputs) {
       item.componentDidRender();
     }
     this.button.componentDidRender();
@@ -24,7 +24,7 @@ export class LoginPage extends Block {
     const linkSingIn: HTMLElement = document.querySelector('.button__link-under-button') as HTMLElement;
     if (linkSingIn ){
       linkSingIn.onclick = () => {
-        let link = linkSingIn.getAttribute('data-link');
+        const link = linkSingIn.getAttribute('data-link');
         if (link) {
           AppStore.router.go(link);
         }
@@ -33,6 +33,9 @@ export class LoginPage extends Block {
   }
 
   render(): string {
+
+
+
     let template = loginSigningTemplate(
       'form form__login',
       'Вход',
@@ -41,14 +44,14 @@ export class LoginPage extends Block {
         text: 'Нет аккаунта?'
       },
     );
-    let arr: InputProps[] = [{
+    const arr: InputProps[] = [{
       nameField: 'Логин',
       type: 'text',
       nameInput: 'login',
       idError: 'login-error',
       validation: [
         (value: string) => {
-          return !!value ? null : 'заполните поле';
+          return value ? null : 'заполните поле';
         },
       ]
     },
@@ -59,13 +62,13 @@ export class LoginPage extends Block {
         idError: 'password-error',
         validation: [
           (value: string) => {
-            return !!value ? null : 'заполните поле';
+            return value ? null : 'заполните поле';
           },
         ]
       }];
     this.inputs = [];
-    for (let item of arr) {
-      let input = new Input({
+    for (const item of arr) {
+      const input = new Input({
         nameField: item.nameField,
         type: item.type,
         nameInput: item.nameInput,

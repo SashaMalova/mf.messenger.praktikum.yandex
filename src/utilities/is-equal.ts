@@ -14,7 +14,7 @@ export function isEqual(a: any, b: any): boolean {
     if (Object.keys(a).length !== Object.keys(b).length) {
       result = false;
     }
-    for (let item of Object.keys(a)) {
+    for (const item of Object.keys(a)) {
       if (typeof a[item] !== 'object' || typeof b[item] !== 'object') {
         if (b[item] !== a[item]) {
           result = false

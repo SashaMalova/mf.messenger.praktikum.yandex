@@ -40,10 +40,8 @@ export class ProfilePage extends Block {
 
   componentDidRender() {
     this.profile.componentDidRender();
-    let avatarGrey: HTMLElement;
-    let avatarRed: HTMLElement;
-    avatarGrey = <HTMLElement>document.querySelector('.avatar-profile > span.grey-avatar');
-    avatarRed = <HTMLElement>document.querySelector('.avatar-profile > span.red-avatar');
+    const avatarGrey = <HTMLElement>document.querySelector('.avatar-profile > span.grey-avatar');
+    const avatarRed = <HTMLElement>document.querySelector('.avatar-profile > span.red-avatar');
     avatarGrey ? avatarGrey.onmouseenter = () => {
       if (!avatarGrey.classList.contains('hidden')) {
         avatarGrey.classList.add('hidden');
@@ -67,7 +65,7 @@ export class ProfilePage extends Block {
           idError: 'avatar-error',
           validation: [
             (value: string): null | string => {
-              return !!value ? null : 'Нужно выбрать файл';
+              return value ? null : 'Нужно выбрать файл';
             },
           ]
         };
@@ -81,7 +79,7 @@ export class ProfilePage extends Block {
           alert: true,
           onClick: this.onEnterClick,
         }];
-        for (let item of this.button) {
+        for (const item of this.button) {
           this.buttonsBlock.push(new Button(
             {...item, inputs: [this.inputBlock]}));
         }
@@ -127,7 +125,7 @@ export class ProfilePage extends Block {
 
   render(): string {
 
-    let arrBlack = [{
+    const arrBlack = [{
       nameField: 'Почта',
       profileData: this.props.user?.email,
     }, {
@@ -148,7 +146,7 @@ export class ProfilePage extends Block {
     },
     ];
     if (!this.profile) {
-      let arrYellow = [{
+      const arrYellow = [{
         text: 'Изменить данные',
         id: 'profile-edit',
       }, {

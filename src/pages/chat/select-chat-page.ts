@@ -46,10 +46,8 @@ export class SelectChatPage extends Block {
 
   componentDidRender() {
     this.sidebarChat.componentDidRender();
-
-   let sidebarChatItems: HTMLElement[];
-    sidebarChatItems = Array.from(document.querySelectorAll('.sidebar-chat-item'));
-    for (let item of sidebarChatItems) {
+    const sidebarChatItems: HTMLElement[] = Array.from(document.querySelectorAll('.sidebar-chat-item'));
+    for (const item of sidebarChatItems) {
       item.onclick = ()=>{
         AppStore.activeChatId = Number(item.attributes.getNamedItem('data-id')?.value)
         AppStore.router.go('/chat-write');
@@ -62,7 +60,7 @@ export class SelectChatPage extends Block {
     // this.fetchChatsList();
 
     if (this.props.chats){
-      for (let item of  Object.keys(this.props.chats) ){
+      for (const item of  Object.keys(this.props.chats) ){
         this.arr.push({
           title: this.props.chats[item].title,
           id: this.props.chats[item].id,

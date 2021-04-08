@@ -7,18 +7,18 @@ export class Input extends Block {
     }
 
     validate() {
-        let arr: string[] = [];
-        let input = document.querySelector<HTMLInputElement>('input[name=' + this.props.nameInput + ']');
+        const arr: string[] = [];
+        const input = document.querySelector<HTMLInputElement>('input[name=' + this.props.nameInput + ']');
         this.props.validation.forEach((item:(value: string) => string | null ) => {
             if (input) {
-                let error = item(input.value);
+                const error = item(input.value);
                 if (error) {
                     arr.push(error)
                 }
             }
         });
 
-        let errorSpan = document.querySelector('#' + this.props.idError);
+        const errorSpan = document.querySelector('#' + this.props.idError);
         if (errorSpan) {
             if (arr.length > 0) {
 
@@ -33,7 +33,7 @@ export class Input extends Block {
     }
 
     clearError() {
-        let errorSpan = document.querySelector('#' + this.props.idError);
+        const errorSpan = document.querySelector('#' + this.props.idError);
         if (errorSpan) {
             if (!errorSpan.classList.contains('invisible')) {
                 errorSpan.classList.add('invisible');
@@ -44,7 +44,7 @@ export class Input extends Block {
 
     componentDidRender() {
         if (this.props.validation) {
-            let input = document.querySelector<HTMLInputElement>('input[name=' + this.props.nameInput + ']');
+            const input = document.querySelector<HTMLInputElement>('input[name=' + this.props.nameInput + ']');
             if (input) {
                 input.onblur = () => {
                     this.validate()
@@ -58,7 +58,7 @@ export class Input extends Block {
     }
 
     render() {
-        let template = Handlebars.compile(`<span class="input__name">{{nameField}}</span>
+        const template = Handlebars.compile(`<span class="input__name">{{nameField}}</span>
      <div class="input__field"><input type="{{type}}" name="{{nameInput}}" ></div>
     {{#if idError}}
     <span class="invisible input__error" id="{{idError}}" ></span>

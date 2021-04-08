@@ -59,7 +59,7 @@ export class Chat extends Block {
           idError: 'login-error',
           validation: [
             (value: string) => {
-              return !!value ? null : 'заполните поле';
+              return value ? null : 'заполните поле';
             }],
         };
         this.inputBlock = new Input(this.input);
@@ -69,7 +69,7 @@ export class Chat extends Block {
           textButton: 'Добавить',
           onClick: this.onEnterClickAddUser,
         }];
-        for (let item of this.button) {
+        for (const item of this.button) {
           this.buttonsBlock.push(new Button({...item, inputs: [this.inputBlock]}));
         }
 
@@ -94,7 +94,7 @@ export class Chat extends Block {
           idError: 'login-error',
           validation: [
             (value: string) => {
-              return !!value ? null : 'заполните поле';
+              return value ? null : 'заполните поле';
             }],
         };
         this.inputBlock = new Input(this.input);
@@ -104,7 +104,7 @@ export class Chat extends Block {
           textButton: 'Удалить',
           onClick: this.onEnterClickDeleteUser,
         }];
-        for (let item of this.button) {
+        for (const item of this.button) {
           this.buttonsBlock.push(new Button({...item, inputs: [this.inputBlock]}));
         }
 
@@ -136,7 +136,7 @@ export class Chat extends Block {
           }
         ];
 
-        for (let item of this.button) {
+        for (const item of this.button) {
           this.buttonsBlock.push(new Button(item));
         }
         const modalWindow = new ModalWindow({
@@ -151,7 +151,7 @@ export class Chat extends Block {
   }
 
   render(): string {
-    let template = Handlebars.compile(`
+    const template = Handlebars.compile(`
  <div class="top-menu">
         <div>
             <span class="avatar"></span>
@@ -234,7 +234,7 @@ export class Chat extends Block {
       .catch(() => {
         console.log(alert('пользователь не найден'));
       }).then((result: any) => {
-        for (let item of result.response) {
+        for (const item of result.response) {
           if (item.login === formData.login) {
             chatsApi.addUsersToChat(item.id)
           }
@@ -254,7 +254,7 @@ export class Chat extends Block {
       .catch(() => {
         console.log(alert('пользователь не найден'));
       }).then((result: any) => {
-        for (let item of result.response) {
+        for (const item of result.response) {
           if (item.login === formData.login) {
             chatsApi.deleteUsersFromChat(item.id)
 

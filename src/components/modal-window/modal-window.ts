@@ -17,7 +17,7 @@ export class ModalWindow extends Block {
   }
 
   componentDidRender() {
-    for (let item of this.props.buttons) {
+    for (const item of this.props.buttons) {
       item.componentDidRender();
     }
     if (this.props.input) {
@@ -46,7 +46,7 @@ export class ModalWindow extends Block {
   }
 
   render() {
-    let template = loginSigningTemplate(
+    const template = loginSigningTemplate(
       this.props.classForm,
       this.props.head,
     );
@@ -57,7 +57,7 @@ export class ModalWindow extends Block {
     }
 
     if (this.props.buttons) {
-      for (let item of this.props.buttons) {
+      for (const item of this.props.buttons) {
         result =  result.replace('<div class="button"></div>','<div class="button"><div class="button__container">' + item.getContent().innerHTML + '</div></div><div class="button"></div>');
       }
     }

@@ -1,6 +1,6 @@
 export function cloneDeep(obj: PlainObject): PlainObject {
   let result: PlainObject;
-  if (obj === null) {return {}};
+  if (obj === null) {return {}}
   if (Array.isArray(obj)) {
     result = [];
     for (let i = 0; i < obj.length; i++) {
@@ -10,7 +10,7 @@ export function cloneDeep(obj: PlainObject): PlainObject {
     }
   } else {
     result = {};
-    for (let item of Object.keys(obj)) {
+    for (const item of Object.keys(obj)) {
       if (typeof obj[item] !== 'object' || obj[item] === null) {
         result[item] = obj[item];
       } else result[item] = cloneDeep(obj[item]);
