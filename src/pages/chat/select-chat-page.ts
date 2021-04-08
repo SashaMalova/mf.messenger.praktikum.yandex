@@ -46,7 +46,7 @@ export class SelectChatPage extends Block {
 
   componentDidRender() {
     this.sidebarChat.componentDidRender();
-    const sidebarChatItems: HTMLElement[] = Array.from(document.querySelectorAll('.sidebar-chat-item'));
+    let sidebarChatItems: HTMLElement[] = Array.from(document.querySelectorAll('.sidebar-chat-item'));
     for (const item of sidebarChatItems) {
       item.onclick = ()=>{
         AppStore.activeChatId = Number(item.attributes.getNamedItem('data-id')?.value)
