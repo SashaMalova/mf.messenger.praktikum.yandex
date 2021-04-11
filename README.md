@@ -16,11 +16,17 @@ Test deploy index.html on Netlify
 Подключен Less
 Подключен API чатов, авторизации и пользователей 
 
+# sprint 4
+Настроен Webpack
+Проект с Docker-сборкой размещен на Heroku https://mysterious-sea-19392.herokuapp.com/ .
+Добавлен ESLint
+Настроен precommit
+Подключен Websocket Добавлена возможность отправки и получения сообщений 
+
 ##Структура проекта:
 
 - static/images изображения
 - static/index.html точка входа
-
 - src/components папка с переиспользуемыми компанентами
 - src/pages исходники ts для каждой страницы проекта
 - src/templates общие шаблоны
@@ -32,8 +38,8 @@ Test deploy index.html on Netlify
 - src/index.ts основной модуль
 
 ##Запуск проекта
-Компиляция проекта **npm run build** **npm run less**
-Запуск сервера **npm run start**
-Открыть ссылку http://localhost:4000
+Сбрка и запуск проекта **npm run start-webpack** 
 
 Запуск тестов **npm run test**
+
+ 
