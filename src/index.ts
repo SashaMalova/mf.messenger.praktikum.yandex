@@ -10,8 +10,7 @@ import {SelectChatPage} from './pages/chat/select-chat-page';
 import {LoginPage} from './pages/login/login';
 import {AppStore} from './store/store';
 import {ReDirect} from './components/re-direct';
-import './styles/index.less'
-
+import './styles/index.less';
 
 AppStore.router = new Router('body');
 

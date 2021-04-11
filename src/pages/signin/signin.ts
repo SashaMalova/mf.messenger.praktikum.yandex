@@ -5,6 +5,7 @@ import {Block} from '../../components/block/block';
 import {InputProps} from '../../components/input/input.interface';
 import {AppStore} from '../../store/store';
 import {chatsApi} from '../../services/chats-api';
+import {cloneDeep} from '../../utilities/clon-deep';
 
 export class SigninPage extends Block {
     private inputs: any;
@@ -32,6 +33,12 @@ export class SigninPage extends Block {
     }
 
     render(): string {
+
+        chatsApi.getUserInfo()
+          .then(() => {
+              AppStore.router.go('/chat-select')
+          });
+
         let template = loginSigningTemplate(
           'form form__signin',
           'Регистрация',
@@ -149,7 +156,10 @@ export class SigninPage extends Block {
 
     onEnterClick(formData :any) {
         chatsApi.signUp(formData)
-          .then(()=>AppStore.router.go('/chat-select'))
+          .then((result)=>{
+              AppStore.user = cloneDeep(result.response);
+              AppStore.router.go('/chat-select')
+          })
           .catch(() => {
               console.log(formData);
           });

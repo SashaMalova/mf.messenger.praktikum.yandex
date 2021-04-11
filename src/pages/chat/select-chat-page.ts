@@ -7,10 +7,22 @@ import {chatsApi} from '../../services/chats-api';
 
 export interface SelectChatPageProps {
   chats: {
-    title: string,
     id: number,
-   avatar: any,
-    created_by: number,
+    title: string,
+    avatar: string,
+    unread_count: number,
+    last_message: {
+      user: {
+        first_name: string,
+        second_name: string,
+        avatar: string,
+        email: string,
+        login: string,
+        phone: string
+      },
+      time: string,
+      content: string
+    }
       }[],
 }
 
@@ -29,15 +41,18 @@ export class SelectChatPage extends Block {
 
   constructor(props: SelectChatPageProps) {
     super('select-chat-page', props);
-
-    this.props.user = {};
-    this.fetchChatsList();
+    chatsApi.getUserInfo()
+      .catch(() => AppStore.router.go('/login'))
+      .then((result) => {
+        AppStore.user = cloneDeep(result.response);
+        AppStore.activeUserId = Number(AppStore.user.id);
+      });
   }
 
   private fetchChatsList() {
     chatsApi.getChats()
       .catch(() => {
-        alert('error');
+        AppStore.router.go('/login');
       })
       .then((result: PlainObject) => {
         this.props.chats = cloneDeep(result.response);
@@ -46,18 +61,19 @@ export class SelectChatPage extends Block {
 
   componentDidRender() {
     this.sidebarChat.componentDidRender();
-    let sidebarChatItems: HTMLElement[] = Array.from(document.querySelectorAll('.sidebar-chat-item'));
+    const sidebarChatItems: HTMLElement[] = Array.from(document.querySelectorAll('.sidebar-chat-item'));
     for (const item of sidebarChatItems) {
       item.onclick = ()=>{
         AppStore.activeChatId = Number(item.attributes.getNamedItem('data-id')?.value)
         AppStore.router.go('/chat-write');
+        chatsApi.connectToChat();
       }
     }
   }
 
   render(): string {
+    this.fetchChatsList();
     this.arr = [];
-    // this.fetchChatsList();
 
     if (this.props.chats){
       for (const item of  Object.keys(this.props.chats) ){

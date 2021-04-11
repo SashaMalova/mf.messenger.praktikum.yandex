@@ -8,7 +8,7 @@ export interface ButtonProps {
   inputs?: Block[];
   link?: string;
   alert?: boolean;
-  onClick?: (user?: any) => void;
+  onClick?: (user?: any, socket?: WebSocket) => void;
 }
 
 export class Button extends Block {
@@ -17,44 +17,46 @@ export class Button extends Block {
   }
 
   componentDidRender() {
-    if (this.props.classButton === 'button__data') {
-      const buttons = document.querySelectorAll<HTMLButtonElement>('button.button__data');
-      buttons.forEach((element) => {
-        element.onclick = () => {
-          let uncorrect = false;
-          if (this.props.inputs) {
-            for (const item of this.props.inputs) {
-              if (!item.validate()) {
-                uncorrect = true
+    if (this.props.onClick) {
+      if (this.props.classButton === 'button__data') {
+        const buttons = document.querySelectorAll<HTMLButtonElement>('button.button__data');
+        buttons.forEach((element) => {
+          element.onclick = () => {
+            let uncorrect = false;
+            if (this.props.inputs) {
+              for (const item of this.props.inputs) {
+                if (!item.validate()) {
+                  uncorrect = true
+                }
+              }
+              if (uncorrect && !this.props.alert) {
+                return alert('ведите корректные данные');
+              } else {
+                const formData = Array.from(document.querySelectorAll('input'))
+                  .reduce((acc: { [key: string]: string | File }, {name, value, files}) => {
+                    acc[name] = files ? files[0] : value;
+                    return acc;
+                  }, {});
+                console.log(formData);
+                this.props.onClick(formData);
+              }
+            } else {
+              if (this.props.onClick) {
+                this.props.onClick();
               }
             }
-            if (uncorrect && !this.props.alert) {
-              return alert('ведите корректные данные');
-            } else {
-              const formData = Array.from(document.querySelectorAll('input'))
-                .reduce((acc: { [key: string]: string | File }, {name, value, files}) => {
-                  // for input with files type
-                  acc[name] = files ? files[0] : value;
-                  return acc;
-                }, {});
-              console.log(formData);
-              this.props.onClick(formData);
-            }
-          } else {
-            if (this.props.onClick) {
-              this.props.onClick();
-            }
           }
-        }
-      });
-    } else {
-      const buttonsLink = document.querySelectorAll<HTMLButtonElement>('button.button__link');
-      buttonsLink.forEach((element) => {
-        element.onclick = () => {
-          AppStore.router.go(this.props.link);
+        });
+      } else {
+        const buttonsLink = document.querySelectorAll<HTMLButtonElement>('button.button__link');
+        buttonsLink.forEach((element) => {
+          element.onclick = () => {
+            AppStore.router.go(this.props.link);
+          }
+        })
       }
-      })
     }
+
   }
 
   render() {

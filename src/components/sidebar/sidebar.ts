@@ -113,7 +113,7 @@ export class SidebarChat extends Block {
   onEnterClick (formData :any){
     chatsApi.createChat(formData)
       .catch(() => {
-        console.log(formData);
+        console.log(Error);
       }).then((result:{response: {id:number}})=> {
           AppStore.activeChatId = result.response.id;
           AppStore.router.go('/chat-write');

@@ -1,13 +1,13 @@
 import '../../templates/global-partials';
 import {Block} from '../../components/block/block';
 import {Profile} from '../../components/profile/profile';
-import {cloneDeep} from '../../utilities/clon-deep';
 import {Button} from '../../components/button/button';
 import {ModalWindow} from '../../components/modal-window/modal-window';
 import {render as globalRender} from '../../components/render';
 import {InputAvatar} from '../../components/input/input-avatar';
 import {AppStore} from '../../store/store';
 import {chatsApi} from '../../services/chats-api';
+import {cloneDeep} from '../../utilities/clon-deep';
 
 export interface ProfilePageProps {
   user: { [key: string]: string }
@@ -26,16 +26,12 @@ export class ProfilePage extends Block {
   constructor(props: ProfilePageProps) {
     super('profile-page', props);
 
-    this.props.user = {};
     chatsApi.getUserInfo()
-      .catch(() => {
-        alert('error');
-      })
-      .then((result: PlainObject) => {
+      .catch(() => AppStore.router.go('/login'))
+      .then((result) => {
         this.props.user = cloneDeep(result.response);
+        AppStore.activeUserId = Number(this.props.user.id);
       });
-
-
   }
 
   componentDidRender() {
@@ -112,6 +108,8 @@ export class ProfilePage extends Block {
       exitButton.onclick = () => {
         chatsApi.logout()
           .then(() => {
+            AppStore.user = undefined;
+            AppStore.activeUserId = undefined;
             AppStore.router.go('/login');
           })
           .catch(() => {

@@ -20,6 +20,8 @@ export class ChatsApi {
       changeUserAvatar: 'user/profile/avatar',
       changePasswordRequest: 'user/password',
       findUserRequest: 'user/search',
+      connectToChat: 'chats/token/',
+      unreadCount: 'chats/new/',
     }
   }
   signUp(formData: Data): Promise<any> {
@@ -50,7 +52,7 @@ export class ChatsApi {
     },)
   }
 
-  getUserInfo() {
+  getUserInfo(): Promise<any> {
     return this.appFetch.get( this.apiHost.getUserInfo, {
       headers: {
         'accept': 'application/json'
@@ -170,6 +172,26 @@ export class ChatsApi {
       }
     },)
   }
+
+  connectToChat():Promise<any> {
+      return this.appFetch.post(this.apiHost.connectToChat + AppStore.activeChatId, {
+      headers: {
+      },
+      data: {
+      }
+    },)
+  }
+
+  unreadCount(id:number):Promise<any> {
+    return this.appFetch.post(this.apiHost.connectToChat + id, {
+      headers: {
+        "accept": "application/json",
+      },
+      data: {
+      }
+    },)
+  }
+
 }
 
 export const chatsApi = new ChatsApi();

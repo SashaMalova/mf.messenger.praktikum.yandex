@@ -31,10 +31,10 @@ export class Profile extends Block {
     let contentBlack = ``;
     let contentYellow = ``;
     if (this.props.arrBlack && this.props.arrYellow) {
-      contentBlack = `{{#each arrBlack}} {{> black-line  nameField = nameField profileDate = profileDate}} {{/each}}`;
-      contentYellow = `{{#each arrYellow}}  {{> yellow-line text = text id = id }}  {{/each}}`;
-    } else {
-      if (this.props.inputs) {
+        contentBlack = `{{#each arrBlack}} {{> black-line  nameField = nameField profileDate = profileDate}} {{/each}}`;
+        contentYellow = `{{#each arrYellow}}  {{> yellow-line text = text id = id }}  {{/each}}`;
+      } else {
+        if (this.props.inputs) {
         for (const item of this.props.inputs) {
           contentBlack = contentBlack + `<div class="input-div"><app-input class="container">` + item.getContent().innerHTML + `</app-input></div>`;
         }

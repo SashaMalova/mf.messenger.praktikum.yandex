@@ -6,6 +6,7 @@ import {ModalWindow} from '../modal-window/modal-window';
 import {render as globalRender} from '../render';
 import {AppStore} from '../../store/store';
 import {chatsApi} from '../../services/chats-api';
+import {contact} from '../../templates/global-partials';
 
 export interface ChatProps {
   contact: any;
@@ -135,7 +136,6 @@ export class Chat extends Block {
             link: '/chat-write',
           }
         ];
-
         for (const item of this.button) {
           this.buttonsBlock.push(new Button(item));
         }
@@ -147,10 +147,26 @@ export class Chat extends Block {
         globalRender('body', modalWindow);
       }
     }
-
   }
 
   render(): string {
+    this.props.contact.chat.array = [];
+    let idChat = 0;
+     if (AppStore.activeChatId){
+       idChat = AppStore.activeChatId;
+     }
+     if (!contact.chat.messages[idChat]){
+       contact.chat.messages[idChat] = [];
+     }
+    for(const item of contact.chat.messages[idChat]){
+      this.props.contact.chat.array.push(item);
+  }
+    for(const item of this.props.contact.chat.array){
+      if (item.time.length > 5){
+        item.time = item.time.substr(11,5);
+      }
+    }
+    console.log(this.props.contact.chat.array);
     const template = Handlebars.compile(`
  <div class="top-menu">
         <div>
@@ -168,28 +184,26 @@ export class Chat extends Block {
     </div>
     <span class="line"></span>
     <div class="chat">
-        <time class="date">{{contact.chat.date}}</time>
-        {{#each contact.chat}}
-            {{#each messages}}
-                {{#if contactsMessage}}
-                   <p class="{{contactsMessage}}">{{message}}
+       
+        {{#each contact.chat.array}}
+                {{#if (isNotIdUser user_id)}}
+                   <p class="contacts-message">{{content}}
                     <time class="time-message ">{{time}}</time>
                 </p>
                 {{/if}}
-                {{#if contactsMedia}}
-                    <div class="{{contactsMedia}}">
+                {{#if file}}
+                    <div class="contacts-media">
                     <img src="{{message}}" alt="">
                     <time class="time-message ">{{time}}</time>
                 </div>
                 {{/if}}
-                {{#if yourMessage}}
-                    <p class="{{yourMessage}}">
-                    <span>{{message}}</span>
+                {{#if (isIdUser user_id)}}
+                    <p class="your-message">
+                    <span>{{content}}</span>
                     <span><img src="../../images/check-marks.png" alt="">
                         <time class="time-message ">{{time}}</time></span>
                 </p>
                 {{/if}}
-            {{/each}}
         {{/each}}
         <div class="function-clip invisible">
             <div>
@@ -240,11 +254,9 @@ export class Chat extends Block {
           }
         }
       }
-    ).catch(() => {
-      console.log(AppStore.activeChatId);
-    }).then(() => {
+    ).then(() => {
         AppStore.router.go('/chat-write');
-      }
+    }
     );
   }
 
@@ -262,7 +274,7 @@ export class Chat extends Block {
         }
       }
     ).catch(() => {
-      console.log(AppStore.activeChatId);
+      console.log(Error);
     }).then(() => {
         AppStore.router.go('/chat-write');
       }
@@ -273,7 +285,7 @@ export class Chat extends Block {
   onEnterClickDeleteChat() {
     chatsApi.deleteChat()
       .catch(() => {
-        console.log(AppStore.activeChatId);
+        console.log(Error);
       }).then(() => {
         AppStore.activeChatId = undefined;
         AppStore.router.go('/chat-select');
@@ -281,3 +293,4 @@ export class Chat extends Block {
     );
   }
 }
+

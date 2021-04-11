@@ -41,6 +41,8 @@
     "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
+    "precommit":"npm run test && npm run lint",
+    "prepare": "husky install",
     "webpack-dev-watch": "webpack --mode development --watch",
     "webpack-dev": "webpack --mode development",
     "webpack-build": "webpack --mode production",
@@ -52,7 +54,8 @@
     "build": "node ./build.js && tsc --build ./tsconfig.json",
     "build-watch": "node ./build.js && tsc --build ./tsconfig.json --watch",
     "less": "lessc ./src/styles/index.less ./build/index.css",
-    "less-watch": "less-watch-compiler ./src/styles/ ./build/ index.less"
+    "less-watch": "less-watch-compiler ./src/styles/ ./build/ index.less",
+    "lint": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -66,10 +69,5 @@
   "homepage": "https://github.com/SashaMalova/Netlify-example#readme",
   "engines": {
     "npm": "14.15.4"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm-run-all test lint:all",
-    }
   }
 }

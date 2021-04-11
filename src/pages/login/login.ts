@@ -5,7 +5,7 @@ import {Block} from '../../components/block/block';
 import {Button} from '../../components/button/button';
 import {AppStore} from '../../store/store';
 import {chatsApi} from '../../services/chats-api';
-
+import {cloneDeep} from '../../utilities/clon-deep';
 
 export class LoginPage extends Block {
   private inputs: any;
@@ -34,7 +34,12 @@ export class LoginPage extends Block {
 
   render(): string {
 
-
+    chatsApi.getUserInfo()
+      .then((result) => {
+        AppStore.user = cloneDeep(result.response);
+        AppStore.activeUserId = Number(AppStore.user.id);
+        AppStore.router.go('/chat-select')
+      });
 
     let template = loginSigningTemplate(
       'form form__login',
@@ -91,7 +96,11 @@ export class LoginPage extends Block {
 
   onEnterClick(formData: any) {
     chatsApi.signIn(formData)
-     .then(() => AppStore.router.go('/chat-select'))
+     .then((result) => {
+       AppStore.user = cloneDeep(result.response);
+       AppStore.activeUserId = Number(AppStore.user.id);
+       AppStore.router.go('/chat-select');
+     })
       .catch(() => {
         console.log('ошибка входа');
       })

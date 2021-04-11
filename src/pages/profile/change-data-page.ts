@@ -7,6 +7,7 @@ import {Input} from '../../components/input/input';
 import {Block} from '../../components/block/block';
 import {cloneDeep} from '../../utilities/clon-deep';
 import {chatsApi} from '../../services/chats-api';
+import {AppStore} from '../../store/store';
 
 export interface ChangeDataPageProps {
   user: { [key: string]: string }
@@ -22,11 +23,10 @@ export class ChangeDataPage extends Block {
 
     this.props.user = {};
     chatsApi.getUserInfo()
-      .catch(() => {
-        alert('error');
-      })
-      .then((result: PlainObject) => {
+      .catch(() => AppStore.router.go('/login'))
+      .then((result) => {
         this.props.user = cloneDeep(result.response);
+        AppStore.activeUserId = Number(this.props.user.id);
       });
   }
 
@@ -145,6 +145,11 @@ export class ChangeDataPage extends Block {
    chatsApi.changeUserProfile(formData)
       .catch(() => {
         console.log(formData);
+      });
+    chatsApi.getUserInfo()
+      .then((result) => {
+        AppStore.user = cloneDeep(result.response);
+        AppStore.activeUserId = Number(AppStore.user.id);
       });
   }
 }

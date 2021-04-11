@@ -1,45 +1,72 @@
-export const profile: {[key:string]:string} = {
-    email: 'pochta@yandex.ru',
-    login: 'ivanivanov',
-    first_name: 'Иван',
-    last_name: 'Иванов',
-    display_name: 'Иван',
-    phone: '+7 (909) 967 30 30',
-    password: '123654',
-    avatar: '../../images/avatar.png',
+import {AppStore} from '../store/store';
+
+export const profile: { [key: string]: string } = {
+  email: 'pochta@yandex.ru',
+  login: 'ivanivanov',
+  first_name: 'Иван',
+  last_name: 'Иванов',
+  display_name: 'Иван',
+  phone: '+7 (909) 967 30 30',
+  password: '123654',
+  avatar: '../../images/avatar.png',
 };
 
-export const contact:any = {
-    nameContact: 'Вадим',
-    chat: [
+export const contact: any = {
+  nameContact: 'Вадим',
+  chat: {
+    date: '19 июня',
+    messages: {
+      0: [{
+        id: '24',
+        time: '12:00',
+        user_id: '123',
+        content: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории\n' +
+          '            — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для\n' +
+          '            полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL\n' +
+          '            — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны,\n' +
+          '            так как астронавты с собой забрали только кассеты с пленкой.\n' +
+          '            Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так\n' +
+          '            и на ракету они так никогда и не попали. Всего их было произведено 25 штук,\n' +
+          '            одну из них недавно продали на аукционе за 45000 евро.',
+        type: 'message',
+      }],
+      216: [{
+        id: '24',
+        time: '12:00',
+        user_id: '123',
+        content: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории\n' +
+          '            — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для\n' +
+          '            полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL\n' +
+          '            — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны,\n' +
+          '            так как астронавты с собой забрали только кассеты с пленкой.\n' +
+          '            Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так\n' +
+          '            и на ракету они так никогда и не попали. Всего их было произведено 25 штук,\n' +
+          '            одну из них недавно продали на аукционе за 45000 евро.',
+        type: 'message',
+      }
+        ,
         {
-            date: '19 июня',
-            messages: [
-                {
-                    contactsMessage: 'contacts-message',
-                    message: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории\n' +
-                        '            — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для\n' +
-                        '            полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL\n' +
-                        '            — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны,\n' +
-                        '            так как астронавты с собой забрали только кассеты с пленкой.\n' +
-                        '            Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так\n' +
-                        '            и на ракету они так никогда и не попали. Всего их было произведено 25 штук,\n' +
-                        '            одну из них недавно продали на аукционе за 45000 евро.',
-                    time: '12:00',
-                },
-                {
-                    contactsMedia: 'contacts-media',
-                    message: '../../images/screenshot.png',
-                    time: '12:00',
-                },
-                {
-                    yourMessage: 'your-message',
-                    message: 'Круто!',
-                    time: '12:00',
-                }
-            ]
-        }
-    ]
+          id: '25',
+          user_id: '8447',
+          content: 'Круто!',
+          time: '12:00',
+        }],
+      220: [{
+        id: '24',
+        time: '12:00',
+        user_id: '123',
+        content: 'Привет',
+        type: 'message',
+      }
+        ,
+        {
+          id: '25',
+          user_id: '8447',
+          content: 'Салют!',
+          time: '12:00',
+        }]
+    }
+  }
 };
 
 Handlebars.registerPartial('link', `<div class="button__link-under-button" data-link="{{link}}">{{text}}</div>`);
@@ -75,3 +102,10 @@ Handlebars.registerPartial('chat-list', `
     </div>
     </li>`);
 
+Handlebars.registerHelper('isIdUser', function (value) {
+  return Number(value) === AppStore.activeUserId;
+});
+
+Handlebars.registerHelper('isNotIdUser', function (value) {
+  return Number(value) !== AppStore.activeUserId;
+});

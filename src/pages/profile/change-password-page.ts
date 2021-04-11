@@ -6,6 +6,8 @@ import {Input} from '../../components/input/input';
 import {Profile} from '../../components/profile/profile';
 import {Block} from '../../components/block/block';
 import {chatsApi} from '../../services/chats-api';
+import {AppStore} from '../../store/store';
+import {cloneDeep} from '../../utilities/clon-deep';
 
 export interface ChangePasswordPageProps {
   user: { [key: string]: string }
@@ -18,6 +20,12 @@ export class ChangePasswordPage extends Block {
 
   constructor(props: ChangePasswordPageProps) {
     super('change-password-page', props);
+    chatsApi.getUserInfo()
+      .catch(() => AppStore.router.go('/login'))
+      .then((result) => {
+        this.props.user = cloneDeep(result.response);
+        AppStore.activeUserId = Number(this.props.user.id);
+      });
   }
 
   componentDidRender() {
@@ -91,6 +99,11 @@ export class ChangePasswordPage extends Block {
     chatsApi.changePasswordRequest(formData)
       .catch(() => {
         console.log(formData);
+      });
+    chatsApi.getUserInfo()
+      .then((result) => {
+        AppStore.user = cloneDeep(result.response);
+        AppStore.activeUserId = Number(AppStore.user.id);
       });
   }
 }
